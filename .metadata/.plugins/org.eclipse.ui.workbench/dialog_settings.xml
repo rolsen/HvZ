@@ -2,9 +2,11 @@
 <section name="Workbench">
 	<section name="InstallationDialogSettings">
 		<item value="584" key="DIALOG_WIDTH"/>
-		<item value="-3" key="DIALOG_Y_ORIGIN"/>
-		<item value="104" key="DIALOG_X_ORIGIN"/>
+		<item value="-61" key="DIALOG_Y_ORIGIN"/>
 		<item value="640" key="DIALOG_HEIGHT"/>
+		<item value="104" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Tahoma|8.25|0|WINDOWS|1|-11|0|0|0|400|0|0|0|1|0|0|0|0|Tahoma" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="ImportExportAction">
 	</section>
 </section>
