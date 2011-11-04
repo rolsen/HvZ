@@ -10,7 +10,7 @@ public class HvZ_phoneActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TextView tv = new TextView(this); 
-        tv.setText("Hello World! We Rule!");
+        tv.setText("Hello World! New Icon!!");
         setContentView(tv);
     }
 }

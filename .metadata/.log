@@ -164,3 +164,72 @@ Command-line arguments:  -os win32 -ws win32 -arch x86
 
 !ENTRY com.android.ide.eclipse.adt 4 0 2011-11-03 17:06:07.213
 !MESSAGE Failed to load properties file for project 'HvZ_phone'
+!SESSION 2011-11-04 09:30:22.265 -----------------------------------------------
+eclipse.buildId=M20100211-1343
+java.version=1.6.0_25
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2011-11-04 09:30:56.232
+!MESSAGE projectOpenedWithWorkspace: failed to find manifest package for project HvZ_phone
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2011-11-04 09:31:26.336
+!MESSAGE Unable to read C:\Users\Kevin\Desktop\UID\Hvz\HvZ_phone\AndroidManifest.xml: org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/HvZ_phone/AndroidManifest.xml'.
+!STACK 0
+com.android.io.StreamException: org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/HvZ_phone/AndroidManifest.xml'.
+	at com.android.ide.eclipse.adt.io.IFileWrapper.getContents(IFileWrapper.java:50)
+	at com.android.sdklib.xml.AndroidManifestParser.parse(AndroidManifestParser.java:606)
+	at com.android.ide.eclipse.adt.internal.project.AndroidManifestHelper.parse(AndroidManifestHelper.java:71)
+	at com.android.ide.eclipse.adt.internal.build.builders.PreCompilerBuilder.build(PreCompilerBuilder.java:339)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:627)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:170)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:253)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:309)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:341)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:140)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:238)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/HvZ_phone/AndroidManifest.xml'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:664)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:288)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:277)
+	at com.android.ide.eclipse.adt.io.IFileWrapper.getContents(IFileWrapper.java:48)
+	... 15 more
+!SESSION 2011-11-04 10:39:25.215 -----------------------------------------------
+eclipse.buildId=M20100211-1343
+java.version=1.6.0_25
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2011-11-04 10:41:43.181
+!MESSAGE Unable to read C:\Users\Kevin\Desktop\UID\Hvz\HvZ_phone\AndroidManifest.xml: org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/HvZ_phone/AndroidManifest.xml'.
+!STACK 0
+com.android.io.StreamException: org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/HvZ_phone/AndroidManifest.xml'.
+	at com.android.ide.eclipse.adt.io.IFileWrapper.getContents(IFileWrapper.java:50)
+	at com.android.sdklib.xml.AndroidManifestParser.parse(AndroidManifestParser.java:606)
+	at com.android.ide.eclipse.adt.internal.project.AndroidManifestHelper.parse(AndroidManifestHelper.java:71)
+	at com.android.ide.eclipse.adt.internal.build.builders.PreCompilerBuilder.build(PreCompilerBuilder.java:339)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:627)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:170)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:253)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:309)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:341)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:140)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:238)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/HvZ_phone/AndroidManifest.xml'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:664)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:288)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:277)
+	at com.android.ide.eclipse.adt.io.IFileWrapper.getContents(IFileWrapper.java:48)
+	... 15 more
