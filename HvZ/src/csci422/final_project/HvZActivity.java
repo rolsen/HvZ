@@ -10,7 +10,7 @@ public class HvZActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TextView tv = new TextView(this); 
-        tv.setText("Hello World! We Rule!");
+        tv.setText("Humans Versus Zombies Android Application");
         setContentView(tv);
     }
 }

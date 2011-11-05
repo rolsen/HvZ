@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, HvZ_phoneActivity!</string>
+    <string name="app_name">HvZ_phone</string>
+	<string name="menu_text">Function call to get player list here!</string>
+        
+</resources>
