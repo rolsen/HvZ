@@ -1,0 +1,35 @@
+Kate Lyssy|klyssy@mines.edu|m
+Jason Buster|jbuster@mines.edu|xl
+Christian neal|cneal@mymail.mines.edu|l
+Alli Nilles|anilles@mines.edu|s
+Ethan Salier-Hellendag|msalierh@mymail.mines.edu|l
+James Kergosien|jkergosi@mines.edu|m
+Taylor Chase Tyree|chasetyree@gmail.com|l
+Ethan Morton-Gaught|emortong@mines.edu|xl
+Alexander Gonzalez|algonzal@mines.edu|l
+Joelle Brunvand|jbrunvan@mines.edu|s
+Danny Victor|dvictor@mines.edu|xl
+Melissa Anderson|meanders@mines.edu|xs
+Anna Borchert|anborche@mines.edu|s
+Sarah Holmes|saholmes@mines.edu|s
+Will Felzien|wfelzien@mymail.mines.edu|xl
+Colin Turpin|cturpin@mines.edu|m
+Colten Rohleder|corohlede@mines.edu|m
+Todd Shaklee|tshaklee@mymail.mines.edu|m
+Benjamin Goertz|bgoertz@mymail.mines.edu|l
+David Wojnar|dwojnar@mines.edu|xl
+Connor Campbell|concampb@mymail.mines.edu|m
+jacob gohdes|jgohdes@mines.edu|m
+Matthew Childers|mchilder@mines.edu|s
+Dylon Merrell|dmerrell@mines.edu|m
+Allen Lowry|alowry@mines.edu|l
+Zach Breshears|zbreshea@Mines.edu|s
+Connor Wallace|cwallace@mines.edu|l
+Kyla Smits|kysmits@mines.edu|s
+Kelsey Kopecky|kkopecky@mines.edu|m
+Chelsea Keene|che.daw.kee@gmail.com|s
+Jessica Lewis|jelewis@mines.edu|m
+Jesse Weaver|pianohacker@gmail.com|m
+Jordan Francis|jofranci@mines.edu|l
+----------
+1|8|11|8|5

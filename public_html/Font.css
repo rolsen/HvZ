@@ -1,0 +1,92 @@
+.F1
+{
+font-size:150%;
+font-weight:700;
+}
+
+.F2
+{
+font-size:80%;
+}
+
+DIV.header
+{
+  BORDER-RIGHT: #000000 5px solid;
+  PADDING-RIGHT: 15px;
+  BORDER-TOP: #000000 5px solid;
+  PADDING-LEFT: 15px;
+  PADDING-BOTTOM: 15px;
+  WIDTH: 800px;
+  BORDER-LEFT: #000000 5px solid;
+  COLOR: #000000;
+  PADDING-TOP: 15px;
+  BORDER-BOTTOM: #000000 5px solid;
+  FONT-STYLE: normal;
+  FONT-FAMILY: Verdana, Arial;
+  BACKGROUND-COLOR: #ffffff;
+  TEXT-ALIGN: center;
+  font-size:80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+DIV.box
+{
+  BORDER-RIGHT: #000000 5px solid;
+  PADDING-RIGHT: 15px;
+  BORDER-TOP: #000000 5px solid;
+  PADDING-LEFT: 15px;
+  PADDING-BOTTOM: 15px;
+  WIDTH: 1000px;
+  BORDER-LEFT: #000000 5px solid;
+  COLOR: #000000;
+  PADDING-TOP: 15px;
+  BORDER-BOTTOM: #000000 5px solid;
+  FONT-STYLE: normal;
+  FONT-FAMILY: Verdana, Arial;
+  BACKGROUND-COLOR: #7d7f7c;
+  TEXT-ALIGN: center;
+}
+
+DIV.bg
+{
+PADDING-TOP: 50px;
+PADDING-BOTTOM: 50px;
+BACKGROUND-IMAGE: url("Images/bg1.gif");
+BACKROUND-POSITION: center;
+BACKGROUND-ATTACHMENT: fixed;
+}
+
+.F3
+{
+font-weight:700;
+}
+
+.F4
+{
+  COLOR: #000000;
+  FONT-STYLE: normal;
+  FONT-FAMILY: Verdana, Arial;
+  BACKGROUND-COLOR: #ffffff;
+  TEXT-ALIGN: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.F5
+{
+color: #ff474c;
+font-weight:700;
+}
+
+.F6
+{
+font-size:200%;
+font-weight:700;
+}
+
+.LI
+{
+color: #000000;
+text-decoration: underline;
+}

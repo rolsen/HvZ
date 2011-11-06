@@ -1,0 +1,49 @@
+.F1
+{
+font-size:150%;
+font-weight:700;
+}
+
+.F2
+{
+font-size:80%;
+}
+
+.F3
+{
+font-weight:700;
+}
+
+DIV.bg
+{
+PADDING-TOP: 50px;
+PADDING-BOTTOM: 50px;
+BACKGROUND-IMAGE: url("Images/bg2.gif");
+BACKROUND-POSITION: center;
+BACKGROUND-ATTACHMENT: fixed;
+BACKGROUND-REPEAT: no-repeat;
+}
+
+DIV.box
+{
+  BORDER-RIGHT: #000000 5px solid;
+  PADDING-RIGHT: 15px;
+  BORDER-TOP: #000000 5px solid;
+  PADDING-LEFT: 15px;
+  PADDING-BOTTOM: 15px;
+  WIDTH: 1000px;
+  BORDER-LEFT: #000000 5px solid;
+  COLOR: #000000;
+  PADDING-TOP: 15px;
+  BORDER-BOTTOM: #000000 5px solid;
+  FONT-STYLE: normal;
+  FONT-FAMILY: Verdana, Arial;
+  BACKGROUND-COLOR: #ffffff;
+  TEXT-ALIGN: center;
+}
+
+.LI
+{
+color: #000000;
+text-decoration: underline;
+}
