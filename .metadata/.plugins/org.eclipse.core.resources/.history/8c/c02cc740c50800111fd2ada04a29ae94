@@ -1,7 +1,0 @@
-package csci422.final_project;
-
-import java.io.*;
-
-public class CgiReport extends CgiShow {
-
-}

@@ -1,0 +1,11 @@
+.metadata
+.metadata/.plugins/*
+.metadata/*
+HvZ/bin
+HvZ/bin/*
+HvZ/.classpath
+HvZ/.project
+HvZ_phone/bin
+HvZ_phone/bin/*
+HvZ_phone/.classpath
+HvZ_phone/.project
