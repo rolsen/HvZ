@@ -1,0 +1,16 @@
+package csci422.final_project;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+
+public class report extends Activity {
+	public void onCreate(Bundle b) {
+		super.onCreate(b);
+		setContentView(R.layout.report1);
+
+		/*Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~mmazzocc/report"));
+		startActivity(i);*/
+	}
+}

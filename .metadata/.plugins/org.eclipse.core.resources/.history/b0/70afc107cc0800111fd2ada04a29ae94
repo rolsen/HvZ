@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Humans Versus Zombies Android Application</string>
+    <string name="app_name">HvZ</string>
+    <string name="menu_text">Function call to get player list here!</string>
+    <string name="menu_title">Player List Menu Title</string>
+    <string name="players">Player List</string>
+
+</resources>
