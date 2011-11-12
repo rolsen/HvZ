@@ -5,5 +5,9 @@
     <string name="app_name">HvZ</string>
     <string name="menu_text">Function call to get player list here!</string>
     <string name="menu_title">Player List Menu Title</string>
+    <string name="players">Player List</string>
+    <string name="zombie_label">Zombie Player Code</string>
+    <string name="human_label">Human Player Code</string>
+    <string name="report">Report A Kill</string>
 
 </resources>

@@ -18,6 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:label="@string/players"
+            android:name=".players" >
+        </activity>
+        <activity
+            android:label="@string/report"
+            android:name=".report" >
+        </activity>
     </application>
 
 </manifest>

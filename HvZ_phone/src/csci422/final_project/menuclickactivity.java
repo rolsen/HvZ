@@ -1,12 +1,9 @@
 package csci422.final_project;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import csci422.final_project.R;
 import android.view.View.OnClickListener;

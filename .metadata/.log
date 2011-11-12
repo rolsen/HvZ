@@ -620,3 +620,162 @@ Caused by: java.lang.NullPointerException
 	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
 	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:134)
 	... 22 more
+!SESSION 2011-11-06 15:14:31.221 -----------------------------------------------
+eclipse.buildId=M20100211-1343
+java.version=1.6.0_25
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 15:50:04.188
+!MESSAGE AndroidManifest: Ignoring unknown 'T' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 15:50:04.607
+!MESSAGE AndroidManifest: Ignoring unknown 'Tex' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 15:50:05.804
+!MESSAGE AndroidManifest: Ignoring unknown 'TextV' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 15:50:06.017
+!MESSAGE AndroidManifest: Ignoring unknown 'TextVie' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 15:51:44.132
+!MESSAGE AndroidManifest: Ignoring unknown 'AC' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 15:51:44.469
+!MESSAGE AndroidManifest: Ignoring unknown 'ACTI' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 15:51:44.700
+!MESSAGE AndroidManifest: Ignoring unknown 'ACTIVI' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 15:51:45.095
+!MESSAGE AndroidManifest: Ignoring unknown 'ACTI' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 15:51:45.367
+!MESSAGE AndroidManifest: Ignoring unknown 'AC' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 15:51:46.281
+!MESSAGE AndroidManifest: Ignoring unknown 'ac' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 15:51:46.988
+!MESSAGE AndroidManifest: Ignoring unknown 'acti' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 15:51:48.012
+!MESSAGE AndroidManifest: Ignoring unknown 'activi' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 15:52:11.645
+!MESSAGE AndroidManifest: Ignoring unknown 'sr' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 15:52:12.044
+!MESSAGE AndroidManifest: Ignoring unknown 'st' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 15:52:12.299
+!MESSAGE AndroidManifest: Ignoring unknown 'stri' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 16:22:16.912
+!MESSAGE AndroidManifest: Ignoring unknown '!' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 16:22:17.289
+!MESSAGE AndroidManifest: Ignoring unknown '!' XML element
+
+!ENTRY org.eclipse.ui 4 0 2011-11-06 16:24:50.198
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.swt.SWTException: Failed to execute runnable (java.lang.NullPointerException)
+	at org.eclipse.swt.SWT.error(SWT.java:3884)
+	at org.eclipse.swt.SWT.error(SWT.java:3799)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:137)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3885)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3506)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2405)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2369)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2221)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:500)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:493)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:113)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:194)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:368)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:559)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:514)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1311)
+Caused by: java.lang.NullPointerException
+	at com.android.ddmuilib.logcat.LogCatReceiverFactory.newReceiver(LogCatReceiverFactory.java:57)
+	at com.android.ddmuilib.logcat.LogCatPanel.deviceSelected(LogCatPanel.java:229)
+	at com.android.ddmuilib.SelectionDependentPanel.deviceSelected(SelectionDependentPanel.java:52)
+	at com.android.ide.eclipse.ddms.views.SelectionDependentViewPart.selectionChanged(SelectionDependentViewPart.java:67)
+	at com.android.ide.eclipse.ddms.DdmsPlugin$6.run(DdmsPlugin.java:690)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:134)
+	... 22 more
+!SESSION 2011-11-06 16:24:57.587 -----------------------------------------------
+eclipse.buildId=M20100211-1343
+java.version=1.6.0_25
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 16:27:17.777
+!MESSAGE AndroidManifest: Ignoring unknown '!' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 16:27:18.145
+!MESSAGE AndroidManifest: Ignoring unknown '!' XML element
+!SESSION 2011-11-06 16:29:44.607 -----------------------------------------------
+eclipse.buildId=M20100211-1343
+java.version=1.6.0_25
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 17:17:12.962
+!MESSAGE AndroidManifest: Ignoring unknown 'st' XML element
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2011-11-06 17:17:13.232
+!MESSAGE AndroidManifest: Ignoring unknown 'stri' XML element
+
+!ENTRY org.eclipse.ui 4 0 2011-11-06 17:56:50.545
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.swt.SWTException: Failed to execute runnable (java.lang.NullPointerException)
+	at org.eclipse.swt.SWT.error(SWT.java:3884)
+	at org.eclipse.swt.SWT.error(SWT.java:3799)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:137)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3885)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3506)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2405)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2369)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2221)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:500)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:493)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:113)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:194)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:368)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:559)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:514)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1311)
+Caused by: java.lang.NullPointerException
+	at com.android.ddmuilib.logcat.LogCatReceiverFactory.newReceiver(LogCatReceiverFactory.java:57)
+	at com.android.ddmuilib.logcat.LogCatPanel.deviceSelected(LogCatPanel.java:229)
+	at com.android.ddmuilib.SelectionDependentPanel.deviceSelected(SelectionDependentPanel.java:52)
+	at com.android.ide.eclipse.ddms.views.SelectionDependentViewPart.selectionChanged(SelectionDependentViewPart.java:67)
+	at com.android.ide.eclipse.ddms.DdmsPlugin$6.run(DdmsPlugin.java:690)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:134)
+	... 22 more

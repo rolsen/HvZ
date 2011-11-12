@@ -3,11 +3,9 @@ package csci422.final_project;
 import csci422.final_project.R;
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 
 public class HvZ_phoneActivity extends Activity {
@@ -22,7 +20,9 @@ public class HvZ_phoneActivity extends Activity {
 		playerButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				// Perform action on clicks
-				Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~mmazzocc/players.html"));
+				/*Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~mmazzocc/players.html"));
+				startActivity(i);*/
+				Intent i = new Intent(HvZ_phoneActivity.this, players.class);
 				startActivity(i);
 			}
 		});
@@ -31,7 +31,9 @@ public class HvZ_phoneActivity extends Activity {
 		killButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				// Perform action on clicks
-				Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~mmazzocc/report"));
+				/*Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~mmazzocc/report"));
+				startActivity(i);*/
+				Intent i = new Intent(HvZ_phoneActivity.this, report.class);
 				startActivity(i);
 			}
 		});
