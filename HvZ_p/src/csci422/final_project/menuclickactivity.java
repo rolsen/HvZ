@@ -29,7 +29,8 @@ public class menuclickactivity extends Activity {
 			public void onClick(View v) {
 				switch (v.getId()) {
 				case R.id.button1:
-					Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~mmazzocc/players.html"));
+					System.out.println("ROAR!!!");
+					Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~cloew/cgi-bin/first.cgi"));
 					startActivity(i);
 					/*pw.showAtLocation(layout, Gravity.CENTER, 0, 0);
             		pw.update(50,50,300,80);

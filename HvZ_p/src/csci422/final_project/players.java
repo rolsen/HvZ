@@ -36,7 +36,7 @@ public class players extends Activity {
 			e.printStackTrace();
 		}
 */
-		Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~mmazzocc/cgi-bin/playerTable.cgi"));
+		Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~cloew/cgi-bin/first.cgi"));
 		startActivity(i);
 	}
 
