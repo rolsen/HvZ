@@ -36,6 +36,26 @@ public class players extends Activity {
 			e.printStackTrace();
 		}
 */
+
+		try {
+			URL playerListURL = new URL("http://inside.mines.edu/~cloew/cgi-bin/first.cgi");
+		    BufferedReader in = new BufferedReader(
+			        new InputStreamReader(
+			        		playerListURL.openStream()));
+	
+		    String inputLine;
+	
+		    while ((inputLine = in.readLine()) != null)
+		    	System.out.println(inputLine);
+	
+		    in.close();
+		}
+		catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~cloew/cgi-bin/first.cgi"));
 		startActivity(i);
 	}
