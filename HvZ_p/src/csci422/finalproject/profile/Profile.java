@@ -48,7 +48,7 @@ public class Profile {
 		}
 	}
 	
-	static public Profile getInstance() {
+	public static Profile getInstance() {
 		if (profile == null) {
 			profile = new Profile();
 		}
