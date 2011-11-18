@@ -31,17 +31,6 @@ public class menuclickactivity extends Activity {
 				case R.id.button1:
 					Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~mmazzocc/players.html"));
 					startActivity(i);
-					/*pw.showAtLocation(layout, Gravity.CENTER, 0, 0);
-            		pw.update(50,50,300,80);
-            		break;
-            	case R.id.button2:
-            		break;
-            	case R.id.button3:
-            		break;
-            	case R.id.button4:
-            		break;
-            	case R.id.button5:
-            		break;*/
 				}
 			}
 		});

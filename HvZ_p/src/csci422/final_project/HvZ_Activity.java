@@ -9,10 +9,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import android.widget.Toast;
 
 public class HvZ_Activity extends Activity {
 	/** Called when the activity is first created. */
@@ -23,63 +24,51 @@ public class HvZ_Activity extends Activity {
 
 		final String FILENAME = "PlayerCodeFile";
 
-		File code = new File(FILENAME);
-		if(!code.exists()) {
-			try {
-				code.createNewFile();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
-			AlertDialog.Builder alert = new AlertDialog.Builder(this);
+		int len = 1024;
+		byte[] buffer = new byte[len];
+		try {
+			System.out.println("HELLO");
+			FileInputStream fis = openFileInput(FILENAME);
+			int nrb = fis.read(buffer, 0, len);
+			while (nrb != -1) {
+				nrb = fis.read(buffer, 0, len);
+			}
+			System.out.println(buffer.toString());
+			fis.close();
+		} catch (FileNotFoundException e) {
+			final AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
 			alert.setTitle("Enter Player Code");
 			alert.setMessage("Please enter your player code.");
 
-			// Set an EditText view to get user input 
+			// Set an EditText view to get user input
 			final EditText input = new EditText(this);
 			alert.setView(input);
-
 			alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int whichButton) {
-					String value = input.getText().toString();
-					if(value.length()!=5)
-					{
-						//do some sort of error check here to be sure that there are only 5 numbers
-					}
-					else {
-						FileOutputStream fos;
-						try {
-							fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-							fos.write(value.getBytes());
-							fos.close();
-						} catch (FileNotFoundException e) {
-							e.printStackTrace();
-						} catch (IOException e) {
-							e.printStackTrace();
+						public void onClick(DialogInterface dialog,int whichButton) {
+							int value = Integer.parseInt(input.getText().toString());
+							if (value == 0 || value < 9999 || value > 100000) {
+								removeDialog(1);
+								Toast.makeText(getApplicationContext(), "Invalid Player Code. Please go to your account to update.", Toast.LENGTH_LONG).show();
+								Handler handler = new Handler();
+								handler.post(new Runnable() { 
+									public void run() { showDialog(1);
+									}
+								});
+							}
+							else
+
+							System.out.println(value);
 						}
-					}
-					System.out.println(value);
-				}
-			});
+					});
 			alert.show();
-		}
-		else {
-			try {
-				FileInputStream fis = openFileInput(FILENAME);
-				int num = fis.read();
-				System.out.println(num);
-				fis.close();
 
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		} catch (IOException e) {
+			System.out.println("FAILED");
 		}
 
-
-		//code used to load website for player list. Needs to be put into menuclickactivity.java folder...if possible
+		// code used to load website for player list. Needs to be put into
+		// menuclickactivity.java folder...if possible
 		final Button playerButton = (Button) findViewById(R.id.button1);
 		playerButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -93,12 +82,14 @@ public class HvZ_Activity extends Activity {
 		killButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				// Perform action on clicks
-				/*Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~mmazzocc/report"));
-					startActivity(i);*/
+				/*
+				 * Intent i = new Intent(Intent.ACTION_VIEW,
+				 * Uri.parse("http://inside.mines.edu/~mmazzocc/report"));
+				 * startActivity(i);
+				 */
 				Intent i = new Intent(HvZ_Activity.this, report.class);
 				startActivity(i);
 			}
 		});
-
 	}
 }
