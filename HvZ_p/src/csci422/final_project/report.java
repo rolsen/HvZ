@@ -20,14 +20,29 @@ public class report extends Activity {
 		report.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View V) {
 				// Perform action on clicks
-				String zombie = zombieCode.getText().toString();
-				String human = humanCode.getText().toString();
+				int zombie = Integer.parseInt(zombieCode.getText().toString());
+				int human = Integer.parseInt(humanCode.getText().toString());
 				int hour = time.getCurrentHour();
 				int min = time.getCurrentMinute();
+				String ap = " ";
+				if(hour < 12) {
+					ap = "AM";
+					if (hour==0){ 
+						hour = 12;
+					}
+				}
+				else {
+					ap = "PM";
+					if(hour > 12){
+						hour -=12;
+					}
+				}
 				int day = date.getDayOfMonth();
 				int month = date.getMonth();
 				int year = date.getYear();
-				System.out.println("Zombie "+zombie+ " killed " + human + " at " + hour + ":" + min + " on " + month + "/" + day + "/" + year);
+				String[] args= {String.valueOf(zombie), String.valueOf(human), String.valueOf(hour), String.valueOf(min), ap, String.valueOf(month), String.valueOf(day), String.valueOf(year)}; 
+				CgiReport report = new CgiReport("CgiGet", args, "GET");
+				report.reportKill();
 			}
 
 		});
