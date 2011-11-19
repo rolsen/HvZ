@@ -1,10 +1,18 @@
 package csci422.final_project;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.widget.*;
 
 public class report extends Activity {
@@ -17,6 +25,40 @@ public class report extends Activity {
 		final TimePicker time = (TimePicker) findViewById(R.id.time);
 		final DatePicker date = (DatePicker) findViewById(R.id.date);
 		final Button report = (Button) findViewById(R.id.reportKill);
+		
+		//remove text from human when selected
+		humanCode.setOnFocusChangeListener(new OnFocusChangeListener()
+		{
+			public void onFocusChange(View V, boolean hasFocus) {
+				if(hasFocus==true){
+					if(humanCode.getText().toString().compareTo("Human Player Code")==0){
+						humanCode.setText("");
+					}
+				}
+			}
+		});
+		
+		//set zombie code to that in file
+		final String FILENAME = "PlayerCodeFile";
+
+		int len = 1024;
+		byte[] buffer = new byte[len];
+		try {
+			FileInputStream fis = openFileInput(FILENAME);
+			int nrb = fis.read(buffer, 0, len);
+			while (nrb != -1) {
+				nrb = fis.read(buffer, 0, len);
+			}
+			System.out.println(buffer.toString());
+			zombieCode.setRawInputType(Integer.parseInt(buffer.toString()));
+			fis.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("NO FILE");
+		} catch (IOException e) {
+			System.out.println("FAILED");
+		}
+		
+		
 		report.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View V) {
 				// Perform action on clicks
@@ -46,8 +88,8 @@ public class report extends Activity {
 			}
 
 		});
-		Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~kraber/report"));
-		startActivity(i);
+		//Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~kraber/report"));
+		//startActivity(i);
 	}
 
 }
