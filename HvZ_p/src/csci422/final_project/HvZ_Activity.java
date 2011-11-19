@@ -1,11 +1,9 @@
 package csci422.final_project;
 
 import java.io.*;
-
 import csci422.final_project.R;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,12 +20,12 @@ public class HvZ_Activity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
+		//The code below is used to create the popup window for the player code
 		final String FILENAME = "PlayerCodeFile";
 
 		int len = 1024;
 		byte[] buffer = new byte[len];
 		try {
-			System.out.println("HELLO");
 			FileInputStream fis = openFileInput(FILENAME);
 			int nrb = fis.read(buffer, 0, len);
 			while (nrb != -1) {
@@ -67,29 +65,34 @@ public class HvZ_Activity extends Activity {
 			System.out.println("FAILED");
 		}
 
-		// code used to load website for player list. Needs to be put into
-		// menuclickactivity.java folder...if possible
+		// code used to create the activity for retrieving player info
 		final Button playerButton = (Button) findViewById(R.id.button1);
 		playerButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				// Perform action on clicks
 				Intent i = new Intent(HvZ_Activity.this, players.class);
 				startActivity(i);
 			}
 		});
 
+		//code used to create the activity for opening screen to report a kill
 		final Button killButton = (Button) findViewById(R.id.button2);
 		killButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				// Perform action on clicks
-				/*
-				 * Intent i = new Intent(Intent.ACTION_VIEW,
-				 * Uri.parse("http://inside.mines.edu/~mmazzocc/report"));
-				 * startActivity(i);
-				 */
 				Intent i = new Intent(HvZ_Activity.this, report.class);
 				startActivity(i);
 			}
 		});
+		
+		//code used to create the activity for flare gun 
+		//Rory, uncomment this for the flare gun, copy/modify for minimap.
+		//Also, you might have to add the activity in AndroidManifest.xml,
+		//the other examples in the file should be sufficient 
+		/*final Button flareGun = (Button) findViewById(R.id.button2);
+		flareGun.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(HvZ_Activity.this, <insert_class_name_here>.class);
+				startActivity(i);
+			}
+		});*/
 	}
 }
