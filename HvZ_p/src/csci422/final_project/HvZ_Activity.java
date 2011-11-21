@@ -73,7 +73,7 @@ public class HvZ_Activity extends Activity {
 		final Button playerButton = (Button) findViewById(R.id.player_list);
 		playerButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent i = new Intent(HvZ_Activity.this, players.class);
+				Intent i = new Intent(HvZ_Activity.this, PlayersActivity.class);
 				startActivity(i);
 			}
 		});
@@ -82,7 +82,7 @@ public class HvZ_Activity extends Activity {
 		final Button killButton = (Button) findViewById(R.id.report_kill);
 		killButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent i = new Intent(HvZ_Activity.this, report.class);
+				Intent i = new Intent(HvZ_Activity.this, ReportActivity.class);
 				startActivity(i);
 			}
 		});

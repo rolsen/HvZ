@@ -23,11 +23,11 @@
         </activity>
         <activity
             android:label="@string/players"
-            android:name=".players" >
+            android:name=".PlayersActivity" >
         </activity>
         <activity
             android:label="@string/report"
-            android:name=".report" >
+            android:name=".ReportActivity" >
         </activity>
         <activity
             android:label="@string/profile"
