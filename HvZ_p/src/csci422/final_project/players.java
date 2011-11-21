@@ -3,7 +3,6 @@ package csci422.final_project;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,7 +13,7 @@ public class players extends Activity {
 		super.onCreate(b);
 		setContentView(R.layout.players);
 
-		/*try {
+		try {
 			URL url;
 			url = new URL("http://inside.mines.edu/~kraber/cgi-bin/playerTable.cgi");
 
@@ -35,8 +34,6 @@ public class players extends Activity {
 			System.out.println("ERROR");
 			e.printStackTrace();
 		}
-*/
-
 		try {
 			URL playerListURL = new URL("http://inside.mines.edu/~cloew/cgi-bin/first.cgi");
 		    BufferedReader in = new BufferedReader(
