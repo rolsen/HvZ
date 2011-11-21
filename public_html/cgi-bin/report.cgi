@@ -217,7 +217,7 @@ print MAIL "Subject: Death\n\n";
 print MAIL "You are recieving this email because you have been reported INFECTED. A member of the zombie team ";
 print MAIL "reported infecting you at approximately $old_hour:$minute $AP on $month/$day. If this is not true, please contact ";
 print MAIL "the MOD team immediately at CSMHVZ\@gmail.com.\n\nCongratulations on your addition to the zombie ";
-print MAIL "team. For a full list of zombie rules, go to inside.mines.edu/~mmazzocc/rules.html.\n\n";
+print MAIL "team. For a full list of zombie rules, go to inside.mines.edu/~cloew/rules.html.\n\n";
 print MAIL "Good luck! \n\n -HVZ Mod Core";
 
 close(MAIL);
@@ -237,44 +237,44 @@ print MAIL "Subject: Kill Report\n\n";
 print MAIL "You are recieving this email because you have reported a kill. Your reported kill occurred at ";
 print MAIL "approximately $old_hour:$minute $AP on $month/$day. If this is not true, please contact ";
 print MAIL "the MOD team immediately at CSMHVZ\@gmail.com.\n\nCongratulations on your kill. ";
-print MAIL "For a full list of killing rules, go to inside.mines.edu/~mmazzocc/rules.html.\n\n";
+print MAIL "For a full list of killing rules, go to inside.mines.edu/~cloew/rules.html.\n\n";
 print MAIL "Good luck! \n\n -HVZ Mod Core";
 
 close(MAIL);
 
-print "Location: http://inside.mines.edu/~mmazzocc/killconfirm.html\n\n";
+print "Location: http://inside.mines.edu/~cloew/killconfirm.html\n\n";
 }
 else
 {
    if($failcode==1)
    {
-      print "Location: http://inside.mines.edu/~mmazzocc/killfails/killinvalid-ZombieSelfCannibalism.html\n\n";
+      print "Location: http://inside.mines.edu/~cloew/killfails/killinvalid-ZombieSelfCannibalism.html\n\n";
    }
    if($failcode==2)
    {
-      print "Location: http://inside.mines.edu/~mmazzocc/killfails/killinvalid-RepeatKill.html\n\n";
+      print "Location: http://inside.mines.edu/~cloew/killfails/killinvalid-RepeatKill.html\n\n";
    }
    if($failcode==3)
    {
-      print "Location: http://inside.mines.edu/~mmazzocc/killfails/killinvalid-DeadOrExemptPlayer.html\n\n";
+      print "Location: http://inside.mines.edu/~cloew/killfails/killinvalid-DeadOrExemptPlayer.html\n\n";
    }
    if($failcode==4)
    {
-      print "Location: http://inside.mines.edu/~mmazzocc/killfails/killinvalid-ZombieAteOtherZombie.html\n\n";
+      print "Location: http://inside.mines.edu/~cloew/killfails/killinvalid-ZombieAteOtherZombie.html\n\n";
    }
    if($failcode==5)
    {
-      print "Location: http://inside.mines.edu/~mmazzocc/killfails/killinvalid-OnlyZombiesCanEnterKills.html\n\n";
+      print "Location: http://inside.mines.edu/~cloew/killfails/killinvalid-OnlyZombiesCanEnterKills.html\n\n";
    }
    if($failcode==6)
    {
-      print "Location: http://inside.mines.edu/~mmazzocc/killfails/killinvalid-InvalidCode.html\n\n";
+      print "Location: http://inside.mines.edu/~cloew/killfails/killinvalid-InvalidCode.html\n\n";
    }
    if($failcode==7)
    {
-      print "Location: http://inside.mines.edu/~mmazzocc/killfails/killinvalid-IncorrectTime.html\n\n";
+      print "Location: http://inside.mines.edu/~cloew/killfails/killinvalid-IncorrectTime.html\n\n";
    }
-   #print "Location: http://inside.mines.edu/~mmazzocc/killinvalid.html\n\n";
+   #print "Location: http://inside.mines.edu/~cloew/killinvalid.html\n\n";
 }
 
 #Copyright 2011 Max Mazzocchi
