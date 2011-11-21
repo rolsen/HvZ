@@ -6,11 +6,11 @@ open(DAT, $data_file) || die("Could not open file!");
 @raw_data=<DAT>;
 close(DAT);
 
-open(DAT, "/u/au/es/mmazzocc/public_html/players.html") || die("Could not open file!");
+open(DAT, "../players.html") || die("Could not open file!");
 @old_page=<DAT>;
 close(DAT);
 
-open(DAT, ">/u/au/es/mmazzocc/public_html/players.html") || die("Could not open file!");
+open(DAT, "../players.html") || die("Could not open file!");
 
 $var=1;
 
@@ -106,7 +106,7 @@ foreach $line (@old_page)
 
             if($dead==1)
             {
-               open(FIL, ">/u/au/es/mmazzocc/public_html/cgi-bin/PlayerData.txt") || die("Could not open file!");
+               open(FIL, "PlayerData.txt") || die("Could not open file!");
                foreach $n_line (@raw_data)
                {
                   chomp($n_line);
@@ -178,7 +178,7 @@ print DAT "<br><br>&copy 2011 Maxwell Mazzocchi</div>\n<br>\n<br>\n<a href=\"/PH
 
 close(DAT);
 
-print "Location: http://inside.mines.edu/~mmazzocc/players1.html\n\n";
+print "Location: http://inside.mines.edu/~cloew/players1.html\n\n";
 
 #Copyright 2011 Max Mazzocchi
 

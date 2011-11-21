@@ -91,13 +91,13 @@ public class HvZ_Activity extends Activity {
 		//Rory, uncomment this for the flare gun, copy/modify for minimap.
 		//Also, you might have to add the activity in AndroidManifest.xml,
 		//the other examples in the file should be sufficient 
-		/*final Button flareGun = (Button) findViewById(R.id.button2);
+		final Button flareGun = (Button) findViewById(R.id.mini_map);
 		flareGun.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent i = new Intent(HvZ_Activity.this, <insert_class_name_here>.class);
+				Intent i = new Intent(HvZ_Activity.this, MiniMap.class);
 				startActivity(i);
 			}
-		});*/
+		});
 	}
 	public String getInternalCacheDirectory() {
 	    String cacheDirPath = null;
