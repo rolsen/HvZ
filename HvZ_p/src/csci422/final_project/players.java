@@ -1,5 +1,7 @@
 package csci422.final_project;
 
+import csci422.finalproject.profile.Profile;
+
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -12,30 +14,12 @@ public class players extends Activity {
 	public void onCreate(Bundle b) {
 		super.onCreate(b);
 		setContentView(R.layout.players);
+		Profile profile = Profile.getInstance();
+
 
 		try {
-			URL url;
-			url = new URL("http://inside.mines.edu/~kraber/cgi-bin/playerTable.cgi");
-
-			BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
-			String str = "";
-			while((str=br.readLine()) != null){
-				System.out.println(str);
-			}
-			br.close();
-
-		}
-		catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("ERROR");
-			e.printStackTrace();
-		}
-		try {
-			URL playerListURL = new URL("http://inside.mines.edu/~cloew/cgi-bin/first.cgi");
+			URL playerListURL = new URL(profile.getPlayerListURL());
+			
 		    BufferedReader in = new BufferedReader(
 			        new InputStreamReader(
 			        		playerListURL.openStream()));
@@ -53,7 +37,7 @@ public class players extends Activity {
 			e.printStackTrace();
 		}
 		
-		Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~cloew/cgi-bin/first.cgi"));
+		Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(profile.getPlayerListURL()));//"http://inside.mines.edu/~cloew/cgi-bin/first.cgi"));
 		startActivity(i);
 	}
 

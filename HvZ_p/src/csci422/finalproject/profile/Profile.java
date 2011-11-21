@@ -19,7 +19,7 @@ public class Profile {
 	
 	// Variables for URLs and actions
 	private static final String DEFAULT_SERVER_URL = "http://inside.mines.edu/~cloew/";
-	private static final String PLAYER_LIST_ACTION = "cgi-bin/first.cgi";
+	private static final String PLAYER_LIST_ACTION = "cgi-bin/playerList_Android.cgi";
 	
 	// Profile Data Save Location
 	private static final String FILENAME = "PlayerCodeFile";
