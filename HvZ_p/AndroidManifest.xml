@@ -31,7 +31,7 @@
         </activity>
         <activity
             android:label="@string/profile"
-            android:name=".profile" >
+            android:name=".ProfileActivty" >
         </activity>
     </application>
 

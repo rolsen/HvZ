@@ -119,7 +119,7 @@ public class HvZ_Activity extends Activity {
 		final Button profileButton = (Button) findViewById(R.id.profile);
 		profileButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent i = new Intent(HvZ_Activity.this, profile.class);
+				Intent i = new Intent(HvZ_Activity.this, ProfileActivty.class);
 				startActivity(i);
 			}
 		});
