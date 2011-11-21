@@ -16,13 +16,13 @@
         android:orientation="vertical" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/player_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Player List" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/report_kill"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Report A Kill" />
@@ -44,6 +44,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Strategy Map" />
+            
+        <Button
+            android:id="@+id/profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Profile" />
     </LinearLayout>
 
 </LinearLayout>

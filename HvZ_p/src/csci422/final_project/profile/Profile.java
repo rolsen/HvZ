@@ -1,8 +1,11 @@
-package csci422.finalproject.profile;
+package csci422.final_project.profile;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import android.content.Context;
+import android.widget.Toast;
 
 /**
  * This class holds profile data for the current user
@@ -19,7 +22,8 @@ public class Profile {
 	
 	// Variables for URLs and actions
 	private static final String DEFAULT_SERVER_URL = "http://inside.mines.edu/~cloew/";
-	private static final String PLAYER_LIST_ACTION = "cgi-bin/first.cgi";
+	private static final String PLAYER_LIST_ACTION = "cgi-bin/playerList_Android.cgi";
+	private static final String REPORT_KILL_ACTION = "cgi-bin/report.cgi"; 
 	
 	// Profile Data Save Location
 	private static final String FILENAME = "PlayerCodeFile";
@@ -62,17 +66,18 @@ public class Profile {
 	 * @return
 	 */
 	public boolean validId() {
-		boolean res;
+		boolean valid;
 		
 		// Check length is 5
-		res = id.length() == 5;
+		valid = id.length() == 5;
 		
 		// Check only contains digits
 		for (char c : id.toCharArray()) {
-			res = res && DIGITS.contains(String.valueOf(c));
+			valid = valid && DIGITS.contains(String.valueOf(c));
 		}
+
 		
-		return res;
+		return valid;
 	}
 	
 	/**
@@ -83,6 +88,10 @@ public class Profile {
 		currentURL = DEFAULT_SERVER_URL;
 	}
 	
+	public String getId() {
+		return id;
+	}
+	
 	/**
 	 * Changes ID to the new ID and preserves it on the system
 	 * 
@@ -90,10 +99,17 @@ public class Profile {
 	 */
 	public void setId(String newId) {
 		id = newId;
-		// Code to replace id in the file
+	}
+	
+	public void saveId() {
+		// Logic to save to file
 	}
 
 	public String getPlayerListURL() {
 		return currentURL + PLAYER_LIST_ACTION;
+	}
+	
+	public String getReportKillURL() {
+		return currentURL + REPORT_KILL_ACTION;
 	}
 }
