@@ -43,7 +43,8 @@ public class report extends Activity {
 		
 		//set zombie code to that in file
 		String path = getInternalCacheDirectory();
-		final String FILENAME = path + "/PlayerCodeFile" ;
+		//final String FILENAME = path + "/PlayerCodeFile" ;
+		final String FILENAME = "PlayerCodeFile" ;
 
 		int len = 1024;
 		byte[] buffer = new byte[len];
