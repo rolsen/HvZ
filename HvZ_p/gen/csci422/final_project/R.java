@@ -47,6 +47,7 @@ public final class R {
         public static final int human_label=0x7f040006;
         public static final int menu_text=0x7f040002;
         public static final int menu_title=0x7f040003;
+        public static final int mini_map=0x7f040008;
         public static final int players=0x7f040004;
         public static final int report=0x7f040007;
         public static final int zombie_label=0x7f040005;

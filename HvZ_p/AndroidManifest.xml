@@ -30,6 +30,10 @@
             android:label="@string/report"
             android:name=".report" >
         </activity>
+        <activity
+            android:label="@string/mini_map"
+            android:name=".MiniMap" >
+        </activity>
     </application>
 
 </manifest>

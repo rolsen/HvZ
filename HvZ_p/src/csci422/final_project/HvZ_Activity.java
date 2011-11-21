@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -87,11 +88,21 @@ public class HvZ_Activity extends Activity {
 		//Rory, uncomment this for the flare gun, copy/modify for minimap.
 		//Also, you might have to add the activity in AndroidManifest.xml,
 		//the other examples in the file should be sufficient 
-		final Button flareGun = (Button) findViewById(R.id.mini_map);
-		flareGun.setOnClickListener(new View.OnClickListener() {
+		final Button mini_map = (Button) findViewById(R.id.mini_map);
+		mini_map.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
+				Log.w("Unimplemented", "mini_map hello");
 				Intent i = new Intent(HvZ_Activity.this, MiniMap.class);
 				startActivity(i);
+			}
+		});
+		
+		final Button flareGun = (Button) findViewById(R.id.shoot_flare);
+		flareGun.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				MiniMap miniMap = new MiniMap();
+				miniMap.shootFlare();
+				//Log.w("Unimplemented", "todo implement shootFlare");
 			}
 		});
 	}

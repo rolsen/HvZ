@@ -9,5 +9,6 @@
     <string name="zombie_label">Zombie Player Code</string>
     <string name="human_label">Human Player Code</string>
     <string name="report">Report A Kill</string>
+    <string name="mini_map">Mini Map</string>
 
 </resources>
