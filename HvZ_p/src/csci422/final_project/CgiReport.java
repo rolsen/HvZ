@@ -29,10 +29,10 @@ public class CgiReport extends CgiGet {
 			in.close();		
 			
 		} catch (MalformedURLException e) {
-			System.out.println("CONNECTION ERROR");
+			System.out.println("CONNECTION ERROR1");
 			System.out.println("z_code="+args[0]+ " h_code="+args[1] + " hour="+args[2]+" minute="+args[3] + " AP="+args[4] + " month="+args[5]+" day="+args[6]);
 		} catch (IOException e) {
-			System.out.println("CONNECTION ERROR");
+			System.out.println("CONNECTION ERROR2");
 			System.out.println("z_code="+args[0]+ " h_code="+args[1] + " hour="+args[2]+" minute="+args[3] + " AP="+args[4] + " month="+args[5]+" day="+args[6]);
 		}
 		return result;

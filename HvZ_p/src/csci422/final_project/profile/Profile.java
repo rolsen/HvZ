@@ -1,4 +1,4 @@
-package csci422.finalproject.profile;
+package csci422.final_project.profile;
 
 import java.io.File;
 import java.io.IOException;

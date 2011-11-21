@@ -10,7 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import csci422.finalproject.profile.Profile;
+import csci422.final_project.profile.Profile;
 
 public class profile extends Activity {
 	public void onCreate(Bundle b) {

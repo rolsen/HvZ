@@ -1,8 +1,11 @@
 package csci422.final_project;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import csci422.final_project.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -39,7 +42,8 @@ public class report extends Activity {
 		});
 		
 		//set zombie code to that in file
-		final String FILENAME = "PlayerCodeFile";
+		String path = getInternalCacheDirectory();
+		final String FILENAME = path + "/PlayerCodeFile" ;
 
 		int len = 1024;
 		byte[] buffer = new byte[len];
@@ -91,5 +95,12 @@ public class report extends Activity {
 		//Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~kraber/report"));
 		//startActivity(i);
 	}
-
+	public String getInternalCacheDirectory() {
+	    String cacheDirPath = null;
+	    File cacheDir = getCacheDir();
+	    if (cacheDir != null) {
+	        cacheDirPath = cacheDir.getPath();
+	    }
+	    return cacheDirPath;        
+	}
 }

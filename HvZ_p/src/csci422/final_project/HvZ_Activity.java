@@ -1,6 +1,7 @@
 package csci422.final_project;
 
 import java.io.*;
+
 import csci422.final_project.R;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,8 +22,11 @@ public class HvZ_Activity extends Activity {
 		setContentView(R.layout.main);
 
 		//The code below is used to create the popup window for the player code
-		final String FILENAME = "PlayerCodeFile";
-
+		String path = getInternalCacheDirectory();
+		//final String FILENAME = path + "/PlayerCodeFile" ;
+		//System.out.println("BALLS" + FILENAME);
+		final String FILENAME = "PlayerCodeFile" ;
+		
 		int len = 1024;
 		byte[] buffer = new byte[len];
 		try {
@@ -125,5 +129,13 @@ public class HvZ_Activity extends Activity {
 	public void unimplemented() {
 		System.out.println("Currently unimplemented.");
 		Toast.makeText(getApplicationContext(), "Not currently implemented.", Toast.LENGTH_SHORT).show();
+	}
+	public String getInternalCacheDirectory() {
+	    String cacheDirPath = null;
+	    File cacheDir = getCacheDir();
+	    if (cacheDir != null) {
+	        cacheDirPath = cacheDir.getPath();
+	    }
+	    return cacheDirPath;        
 	}
 }
