@@ -42,7 +42,7 @@ public class ProfileActivty extends Activity {
 				profile.setId(idTextbox.getText().toString());
 				
 				// Check for valid Id
-				if (profile.validId(getApplicationContext())) {
+				if (profile.validId()) {
 					profile.saveId();
 					Toast.makeText(getApplicationContext(), SAVED, Toast.LENGTH_LONG).show();
 				}

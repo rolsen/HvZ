@@ -3,6 +3,7 @@ package csci422.final_project;
 import java.io.*;
 
 import csci422.final_project.R;
+import csci422.final_project.profile.Profile;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,59 +16,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class HvZ_Activity extends Activity {
+	private static final String WARNING = "Invalid Player Code.\n" +
+			"Please go to your Profile to update.";
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
-		//The code below is used to create the popup window for the player code
-		String path = getInternalCacheDirectory();
-		//final String FILENAME = path + "/PlayerCodeFile" ;
-		//System.out.println("BALLS" + FILENAME);
-		final String FILENAME = "PlayerCodeFile" ;
-		
-		int len = 1024;
-		byte[] buffer = new byte[len];
-		try {
-			FileInputStream fis = openFileInput(FILENAME);
-			int nrb = fis.read(buffer, 0, len);
-			while (nrb != -1) {
-				nrb = fis.read(buffer, 0, len);
-			}
-			System.out.println(buffer.toString());
-			fis.close();
-		} catch (FileNotFoundException e) {
-			final AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-			alert.setTitle("Enter Player Code");
-			alert.setMessage("Please enter your player code.");
-
-			// Set an EditText view to get user input
-			final EditText input = new EditText(this);
-			alert.setView(input);
-			alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog,int whichButton) {
-							int value = Integer.parseInt(input.getText().toString());
-							if (value == 0 || value < 9999 || value > 100000) {
-								removeDialog(1);
-								Toast.makeText(getApplicationContext(), "Invalid Player Code.\nPlease go to your Profile to update.", Toast.LENGTH_LONG).show();
-								Handler handler = new Handler();
-								handler.post(new Runnable() { 
-									public void run() { showDialog(1);
-									}
-								});
-							}
-							else
-
-							System.out.println(value);
-						}
-					});
-			alert.show();
-
-		} catch (IOException e) {
-			System.out.println("FAILED");
-		}
 
 		// code used to create the activity for retrieving player info
 		final Button playerButton = (Button) findViewById(R.id.player_list);
@@ -137,5 +93,15 @@ public class HvZ_Activity extends Activity {
 	        cacheDirPath = cacheDir.getPath();
 	    }
 	    return cacheDirPath;        
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		Profile profile = Profile.getInstance();
+		
+		if (!profile.validId()) {
+			Toast.makeText(getApplicationContext(), WARNING, Toast.LENGTH_LONG).show();
+		}
 	}
 }
