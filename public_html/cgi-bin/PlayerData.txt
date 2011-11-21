@@ -112,7 +112,7 @@ Jason Buster|JKBuster|D|01.13.28.10.300|0|10895|jbuster@mymail.mines.edu|2
 Jacob Cooper|jman|D|45.11.24.10.296|0|14231|jcooper@mines.edu|0
 Lance Vadla|jobin|H|N/A|0|19061|lvadla@mines.edu|0
 Josh Madole|Josh|D|00.12.24.10.296|0|10838|jmadole@mines.edu|0
-Nate Dauth|Katy Perry|Z|00.14.20.11.300|0|16180|ndauth@mymail.mines.edu|1
+Nate Dauth|Katy Perry|Z|00.14.20.11.325|0|16180|ndauth@mymail.mines.edu|1
 Kayler Rietcheck|Kayler|D|30.13.26.10.298|1|13488|krietche@mines.edu|0
 Kevin Emery|kemery|D|55.14.28.10.300|11|13282|kemery@mines.edu|0
 Jason Santilli|Kids Next Door|D|45.7.28.10.300|4|19648|Jsantill@mines.edu|0
