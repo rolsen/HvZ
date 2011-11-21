@@ -9,5 +9,7 @@
     <string name="zombie_label">Zombie Player Code</string>
     <string name="human_label">Human Player Code</string>
     <string name="report">Report A Kill</string>
+    <string name="id_label"></string>
+    <string name="profile">Profile Settings</string>
 
 </resources>
