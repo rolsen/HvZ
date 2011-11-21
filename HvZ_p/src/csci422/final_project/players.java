@@ -1,10 +1,12 @@
 package csci422.final_project;
 
+
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import csci422.final_project.R;
+import csci422.final_project.profile.Profile;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -19,9 +21,12 @@ public class players extends Activity {
 	public void onCreate(Bundle b) {
 		super.onCreate(b);
 		setContentView(R.layout.players);
+		Profile profile = Profile.getInstance();
 
 		try {
-			URL playerListURL = new URL("http://inside.mines.edu/~cloew/cgi-bin/playerList_Android.cgi");
+			URL playerListURL = new URL(profile.getPlayerListURL());
+			
+		    
 			BufferedReader in = new BufferedReader(
 					new InputStreamReader(
 							playerListURL.openStream()));
