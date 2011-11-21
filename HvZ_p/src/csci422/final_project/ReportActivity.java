@@ -87,7 +87,7 @@ public class ReportActivity extends Activity {
 				int day = date.getDayOfMonth();
 				int month = date.getMonth();
 				int year = date.getYear();
-				String[] args= {String.valueOf(zombie), String.valueOf(human), String.valueOf(hour), String.valueOf(min), ap, String.valueOf(month), String.valueOf(day), String.valueOf(year)}; 
+				String[] args= {String.valueOf(zombie), String.valueOf(human), String.valueOf(hour), String.valueOf(min), ap, String.valueOf(month), String.valueOf(day), String.valueOf(year)};
 				CgiReport report = new CgiReport("CgiGet", args, "GET");
 				report.reportKill();
 			}
