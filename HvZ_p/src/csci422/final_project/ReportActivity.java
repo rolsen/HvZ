@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import csci422.final_project.R;
+import csci422.final_project.profile.Profile;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -22,12 +23,16 @@ public class ReportActivity extends Activity {
 	public void onCreate(Bundle b) {
 		super.onCreate(b);
 		setContentView(R.layout.report);
+		Profile profile = Profile.getInstance();
 
 		final EditText zombieCode = (EditText) findViewById(R.id.zombie);
 		final EditText humanCode = (EditText) findViewById(R.id.human);
 		final TimePicker time = (TimePicker) findViewById(R.id.time);
 		final DatePicker date = (DatePicker) findViewById(R.id.date);
 		final Button report = (Button) findViewById(R.id.reportKill);
+		
+		//Set Zombie Code to user ID
+		zombieCode.setText(profile.getId());
 		
 		//remove text from human when selected
 		humanCode.setOnFocusChangeListener(new OnFocusChangeListener()
@@ -41,27 +46,8 @@ public class ReportActivity extends Activity {
 			}
 		});
 		
-		//set zombie code to that in file
-		String path = getInternalCacheDirectory();
-		//final String FILENAME = path + "/PlayerCodeFile" ;
-		final String FILENAME = "PlayerCodeFile" ;
-
-		int len = 1024;
-		byte[] buffer = new byte[len];
-		try {
-			FileInputStream fis = openFileInput(FILENAME);
-			int nrb = fis.read(buffer, 0, len);
-			while (nrb != -1) {
-				nrb = fis.read(buffer, 0, len);
-			}
-			System.out.println(buffer.toString());
-			zombieCode.setRawInputType(Integer.parseInt(buffer.toString()));
-			fis.close();
-		} catch (FileNotFoundException e) {
-			System.out.println("NO FILE");
-		} catch (IOException e) {
-			System.out.println("FAILED");
-		}
+		
+		
 		
 		
 		report.setOnClickListener(new View.OnClickListener() {

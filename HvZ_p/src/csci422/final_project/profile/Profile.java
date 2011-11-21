@@ -64,7 +64,7 @@ public class Profile {
 	 * 
 	 * @return
 	 */
-	public boolean validId(Context context) {
+	public boolean validId() {
 		boolean valid;
 		
 		// Check length is 5
