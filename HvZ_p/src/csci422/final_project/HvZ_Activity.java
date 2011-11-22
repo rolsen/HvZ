@@ -1,20 +1,15 @@
 package csci422.final_project;
 
-import java.io.*;
+import java.io.File;
 
-import csci422.final_project.R;
-import csci422.final_project.profile.Profile;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
+import csci422.final_project.profile.Profile;
 
 public class HvZ_Activity extends Activity {
 	private static final String WARNING = "Invalid Player Code.\n" +
@@ -51,7 +46,6 @@ public class HvZ_Activity extends Activity {
 		final Button miniMapButton = (Button) findViewById(R.id.mini_map);
 		miniMapButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Log.w("Unimplemented", "mini_map hello");
 				Intent i = new Intent(HvZ_Activity.this, MiniMapActivity.class);
 				startActivity(i);
 			}
@@ -61,7 +55,19 @@ public class HvZ_Activity extends Activity {
 		final Button flareButton = (Button) findViewById(R.id.shoot_flare);
 		flareButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				unimplemented();
+				Log.w("HAI", "flare button says 'ey!");
+				
+				Intent i = new Intent(HvZ_Activity.this, MiniMapActivity.class);
+				
+				Bundle b = new Bundle();
+				b.putBoolean("shootFlare", true);
+				i.putExtras(b);
+				
+				startActivity(i);
+				
+//				MiniMapActivity mm = new MiniMapActivity();
+//				mm.onCreate(null);
+//				mm.shootFlare();
 			}
 		});
 		

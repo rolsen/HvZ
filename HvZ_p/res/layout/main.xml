@@ -37,7 +37,7 @@
             android:id="@+id/shoot_flare"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Flare Gun" />
+            android:text="Shoot Flare Gun" />
 
         <Button
             android:id="@+id/strategy_map"
