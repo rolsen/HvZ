@@ -52,7 +52,7 @@ public class HvZ_Activity extends Activity {
 		miniMapButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Log.w("Unimplemented", "mini_map hello");
-				Intent i = new Intent(HvZ_Activity.this, MiniMap.class);
+				Intent i = new Intent(HvZ_Activity.this, MiniMapActivity.class);
 				startActivity(i);
 			}
 		});
