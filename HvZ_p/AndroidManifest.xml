@@ -3,39 +3,20 @@
     package="csci422.final_project"
     android:versionCode="1"
     android:versionName="1.0" >
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <uses-sdk android:minSdkVersion="8" />
+    <uses-sdk android:minSdkVersion="7" />
 
     <application
-        android:icon="@drawable/ic_hvz"
-        android:label="@string/app_name">
-        <uses-library android:name="com.google.android.maps" />
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
         <activity
             android:label="@string/app_name"
-            android:name=".HvZ_Activity" >
+            android:name=".Hvz_testActivity" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:label="@string/players"
-            android:name=".PlayersActivity" >
-        </activity>
-        <activity
-            android:label="@string/report"
-            android:name=".ReportActivity" >
-        </activity>
-        <activity
-            android:label="@string/profile"
-            android:name=".ProfileActivty" >
-        </activity>
-        <activity
-            android:label="@string/mini_map"
-            android:name=".MiniMap" >
         </activity>
     </application>
 
