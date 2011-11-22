@@ -39,10 +39,7 @@ public class HvZ_Activity extends Activity {
 			}
 		});
 		
-		//code used to create the activity for flare gun 
-		//Rory, uncomment this for the flare gun, copy/modify for minimap.
-		//Also, you might have to add the activity in AndroidManifest.xml,
-		//the other examples in the file should be sufficient 
+		// Creates MiniMap Activity
 		final Button miniMapButton = (Button) findViewById(R.id.mini_map);
 		miniMapButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -51,7 +48,7 @@ public class HvZ_Activity extends Activity {
 			}
 		});
 		
-		// Create Flare Activity
+		// Create MiniMap Activity with Flare
 		final Button flareButton = (Button) findViewById(R.id.shoot_flare);
 		flareButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -64,20 +61,16 @@ public class HvZ_Activity extends Activity {
 				i.putExtras(b);
 				
 				startActivity(i);
-				
-//				MiniMapActivity mm = new MiniMapActivity();
-//				mm.onCreate(null);
-//				mm.shootFlare();
 			}
 		});
 		
-		// Creates Strategy Map Activity
-		final Button strategyButton = (Button) findViewById(R.id.strategy_map);
-		strategyButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				unimplemented();
-			}
-		});
+//		// Creates Strategy Map Activity
+//		final Button strategyButton = (Button) findViewById(R.id.strategy_map);
+//		strategyButton.setOnClickListener(new View.OnClickListener() {
+//			public void onClick(View v) {
+//				unimplemented();
+//			}
+//		});
 		
 		// Creates Profile Activity
 		final Button profileButton = (Button) findViewById(R.id.profile);
