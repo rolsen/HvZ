@@ -79,8 +79,6 @@ public class ReportActivity extends Activity {
 			}
 
 		});
-		//Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://inside.mines.edu/~kraber/report"));
-		//startActivity(i);
 	}
 	public String getInternalCacheDirectory() {
 	    String cacheDirPath = null;
