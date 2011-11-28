@@ -16,14 +16,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnFocusChangeListener;
 import android.widget.*;
 
 public class ReportActivity extends Activity {
 	public void onCreate(Bundle b) {
 		super.onCreate(b);
+		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		setContentView(R.layout.report);
+		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_hvz);
 		Profile profile = Profile.getInstance();
+		
 
 		final EditText zombieCode = (EditText) findViewById(R.id.zombie);
 		final EditText humanCode = (EditText) findViewById(R.id.human);
