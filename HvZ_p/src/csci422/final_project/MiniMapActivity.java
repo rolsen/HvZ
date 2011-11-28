@@ -2,15 +2,26 @@ package csci422.final_project;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import android.content.Context;
-import android.graphics.*;
-import android.location.*;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Point;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.*;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.Toast;
 
-import com.google.android.maps.*;
+import com.google.android.maps.GeoPoint;
+import com.google.android.maps.MapActivity;
+import com.google.android.maps.MapController;
+import com.google.android.maps.MapView;
+import com.google.android.maps.Overlay;
 
 public class MiniMapActivity extends MapActivity {
 	MapView mapView;
@@ -60,7 +71,9 @@ public class MiniMapActivity extends MapActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		setContentView(R.layout.mini_map);
+		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_hvz);
 
 		mapView = (MapView) findViewById(R.id.mapView);  
 		mapView.setBuiltInZoomControls(true);
@@ -84,7 +97,15 @@ public class MiniMapActivity extends MapActivity {
                 shootFlare();
             }
         });
+        
+    	Log.w("debug", "Null time?");
 
+        Bundle b = getIntent().getExtras();
+        if ((b != null) && b.getBoolean("shootFlare")) {
+        	Log.w("HAI", "Found the boolean");
+        	shootFlare();
+        }
+        
 		Log.w("debug", "MiniMapActivity has finished onCreate");
 	}
 
@@ -98,7 +119,7 @@ public class MiniMapActivity extends MapActivity {
 		int lng = (int) (l.getLongitude() * 1e6);
 		GeoPoint gp = new GeoPoint(lat, lng);
 		
-		Log.w("geoToLoc", String.format("The lat: was %f now %d, the lng: was %f now %d", l.getLatitude(), lat, l.getLongitude(), lng));
+		// Log.w("geoToLoc", String.format("The lat: was %f now %d, the lng: was %f now %d", l.getLatitude(), lat, l.getLongitude(), lng));
 		return gp;
 	}
 
@@ -123,7 +144,7 @@ public class MiniMapActivity extends MapActivity {
 		catch (IllegalArgumentException e) {
 			Log.w("debug", "getUserLocation detects emulator");
 			
-			Location userLocation = new Location(locationManager.PASSIVE_PROVIDER);
+			Location userLocation = new Location(LocationManager.PASSIVE_PROVIDER);
 			userLocation.setLatitude(BROWN_MICRO_LAT / 1e6);
 			userLocation.setLongitude(BROWN_MICRO_LNG / 1e6);
 			

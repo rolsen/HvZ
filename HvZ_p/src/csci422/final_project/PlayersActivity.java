@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Window;
 import android.view.ViewGroup.*;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TableRow;
@@ -20,7 +21,9 @@ import android.widget.TextView;
 public class PlayersActivity extends Activity {
 	public void onCreate(Bundle b) {
 		super.onCreate(b);
+		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		setContentView(R.layout.players);
+		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_hvz);
 		Profile profile = Profile.getInstance();
 
 		try {

@@ -16,14 +16,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnFocusChangeListener;
 import android.widget.*;
 
 public class ReportActivity extends Activity {
+	
+	private static final String ZOMBIE = "Please input valid Zombie player code.";
+	private static final String HUMAN = "Please input valid Human player code.";
+	
 	public void onCreate(Bundle b) {
 		super.onCreate(b);
+		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		setContentView(R.layout.report);
+		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_hvz);
 		Profile profile = Profile.getInstance();
+		
 
 		final EditText zombieCode = (EditText) findViewById(R.id.zombie);
 		final EditText humanCode = (EditText) findViewById(R.id.human);
@@ -53,8 +61,26 @@ public class ReportActivity extends Activity {
 		report.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View V) {
 				// Perform action on clicks
-				int zombie = Integer.parseInt(zombieCode.getText().toString());
-				int human = Integer.parseInt(humanCode.getText().toString());
+				int zombie=0;
+				int human=0;
+				try {
+				zombie = Integer.parseInt(zombieCode.getText().toString());
+				}
+				catch (NumberFormatException e){
+					Toast.makeText(getApplicationContext(), ZOMBIE, Toast.LENGTH_LONG).show();
+				}
+				if(zombie >99999 || zombie < 10000){
+					Toast.makeText(getApplicationContext(), ZOMBIE, Toast.LENGTH_LONG).show();
+				}
+				try {
+				human = Integer.parseInt(humanCode.getText().toString());
+				}
+				catch (NumberFormatException e){
+					Toast.makeText(getApplicationContext(), HUMAN, Toast.LENGTH_LONG).show();
+				}
+				if(human >99999 || human < 10000){
+					Toast.makeText(getApplicationContext(), HUMAN, Toast.LENGTH_LONG).show();
+				}
 				int hour = time.getCurrentHour();
 				int min = time.getCurrentMinute();
 				String ap = " ";
