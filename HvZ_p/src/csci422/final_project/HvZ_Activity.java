@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -105,7 +106,10 @@ public class HvZ_Activity extends Activity {
 		Profile profile = Profile.getInstance();
 		
 		if (!profile.validId()) {
-			Toast.makeText(getApplicationContext(), WARNING, Toast.LENGTH_LONG).show();
+			//Toast.makeText(getApplicationContext(), WARNING, Toast.LENGTH_LONG).show();
+			Toast warn = Toast.makeText(getApplicationContext(), WARNING, Toast.LENGTH_LONG);
+			warn.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM, 0, 35);
+			warn.show();
 		}
 	}
 }
