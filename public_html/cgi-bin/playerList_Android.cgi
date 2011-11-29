@@ -27,21 +27,26 @@ def cleanLine(line):
         day = date_vals[2]
         mon = date_vals[3]
         ap = ""
-        if hr > 12:
+        if int(hr) > 12:
             ap = "PM"
             hr = int(hr) - 12
         else :
-            ap = "AM"
+            if int(hr) == 12:
+	        	ap = "PM"
+	        else :
+		        if int(hr) == 0:
+		            hr = 12
+                ap = "AM"
         date = ""
-        date += hr
+        date += str(hr)
         date += ":"
-        date += min
+        date += str(min)
         date += " "
         date += ap
         date += ", "
-        date += mon
+        date += str(mon)
         date += "/"
-        date += day
+        date += str(day)
     kills = vals[4]
 
     return [codeName, status, date, kills]

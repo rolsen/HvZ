@@ -35,6 +35,9 @@ public class MiniMapActivity extends MapActivity {
 	int A_POINT_MICRO_LNG = -105220700;
 	int BROWN_MICRO_LAT = 39749784;
 	int BROWN_MICRO_LNG = -105221247;
+	
+	private static final String DEFAULT_SERVER_URL = "http://inside.mines.edu/~cloew/";
+	private static final String REPORT_FLARE_ACTION = "cgi-bin/flare.cgi"; 
 
 	class FlareOverlay extends com.google.android.maps.Overlay
 	{
@@ -198,5 +201,9 @@ public class MiniMapActivity extends MapActivity {
 		
 		Toast t = Toast.makeText(getApplicationContext(), "You have fired your flare gun!", Toast.LENGTH_LONG);
 		t.show();
+	}
+	
+	public String getFlareURL() {
+		return DEFAULT_SERVER_URL + REPORT_FLARE_ACTION;
 	}
 }
