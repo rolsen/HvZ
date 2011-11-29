@@ -33,15 +33,15 @@ def cleanLine(line):
         else :
             ap = "AM"
         date = ""
-        date += hr
+        date += str(hr)
         date += ":"
-        date += min
+        date += str(min)
         date += " "
         date += ap
         date += ", "
-        date += mon
+        date += str(mon)
         date += "/"
-        date += day
+        date += str(day)
     kills = vals[4]
 
     return [codeName, status, date, kills]
