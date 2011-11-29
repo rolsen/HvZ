@@ -1,5 +1,5 @@
 Chris Loew|Chrispy Chris|H|N/A|0|11111|cloew@mines.edu|0
-Rory Olsen|Gory Rory|Z|18.21.27.11.330|25|44444|rolsen@mines.edu|0
+Rory Olsen|Gory Rory|Z|18.21.27.11.340|25|44444|rolsen@mines.edu|0
 Cyndi Rader|Professor Death|Z|00.21.21.11.330|0|12345|kraber@mymail.mines.edu|0
 Kevin Raber|Shotty|H|N/A|0|22222|kraber@mymail.mines.edu|0
 Joe Fake|Singularity|H|N/A|0|33333|kraber@mines.edu|0
