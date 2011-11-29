@@ -27,13 +27,11 @@ def cleanLine(line):
         day = date_vals[2]
         mon = date_vals[3]
         ap = ""
-        if(hr>12){
+        if hr > 12:
             ap = "PM"
-            hr = hr - 12
-        }
-        else {
+            hr = int(hr) - 12
+        else :
             ap = "AM"
-        }
         date = ""
         date += hr
         date += ":"
