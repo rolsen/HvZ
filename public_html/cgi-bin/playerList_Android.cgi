@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+SPLIT = '.'
 SPLITTER = '|'
 DEAD_STATUS = "D"
 HUMAN_STATUS = "H"
@@ -20,7 +21,29 @@ def cleanLine(line):
     if status == HUMAN_STATUS:
         date = "N/A"
     else:
-        date = vals[3]
+        date_vals = vals[3].split(SPLIT)
+        min = date_vals[0]
+        hr = date_vals[1]
+        day = date_vals[2]
+        mon = date_vals[3]
+        ap = ""
+        if(hr>12){
+            ap = "PM"
+            hr = hr - 12
+        }
+        else {
+            ap = "AM"
+        }
+        date = ""
+        date += hr
+        date += ":"
+        date += min
+        date += " "
+        date += ap
+        date += ", "
+        date += mon
+        date += "/"
+        date += day
     kills = vals[4]
 
     return [codeName, status, date, kills]
