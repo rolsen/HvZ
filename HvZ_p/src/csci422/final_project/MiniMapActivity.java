@@ -11,7 +11,6 @@ import android.graphics.Point;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -49,7 +48,7 @@ public class MiniMapActivity extends MapActivity {
 				boolean shadow, long when)
 		{
 			if (point == null) {
-				Log.wtf("Unimplemented", "Error in draw flare");
+				System.out.println("Error in draw flare, GeoPoint is null");
 				return false;
 			}
 			
@@ -97,16 +96,13 @@ public class MiniMapActivity extends MapActivity {
                 shootFlare();
             }
         });
-        
-    	Log.w("debug", "Null time?");
 
         Bundle b = getIntent().getExtras();
         if ((b != null) && b.getBoolean("shootFlare")) {
-        	Log.w("HAI", "Found the boolean");
         	shootFlare();
         }
         
-		Log.w("debug", "MiniMapActivity has finished onCreate");
+        System.out.println("MiniMapActivity has finished onCreate");
 	}
 
 	@Override
@@ -119,7 +115,7 @@ public class MiniMapActivity extends MapActivity {
 		int lng = (int) (l.getLongitude() * 1e6);
 		GeoPoint gp = new GeoPoint(lat, lng);
 		
-		// Log.w("geoToLoc", String.format("The lat: was %f now %d, the lng: was %f now %d", l.getLatitude(), lat, l.getLongitude(), lng));
+		// System.out.println(String.format("The lat: was %f now %d, the lng: was %f now %d", l.getLatitude(), lat, l.getLongitude(), lng));
 		return gp;
 	}
 
@@ -128,7 +124,7 @@ public class MiniMapActivity extends MapActivity {
 
 		try {
 			// Acquire a reference to the system Location Manager
-			Log.w("debug", "getUserLocation stub, setting user location to Brown Building");
+			System.out.println("getUserLocation stub, setting user location to Brown Building");
 	
 			// TODO: This just sets the location for testing purposes to be in Kafadar (CSM)
 			// GPS_PROVIDER is necessary for setTestProviderLocation and getLastKnowLocation to work together
@@ -142,7 +138,7 @@ public class MiniMapActivity extends MapActivity {
 			return locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		}
 		catch (IllegalArgumentException e) {
-			Log.w("debug", "getUserLocation detects emulator");
+			System.out.println("getUserLocation detects emulator instead of real device");
 			
 			Location userLocation = new Location(LocationManager.PASSIVE_PROVIDER);
 			userLocation.setLatitude(BROWN_MICRO_LAT / 1e6);
@@ -183,7 +179,7 @@ public class MiniMapActivity extends MapActivity {
 	
 	public void shootFlare() {
 		// TODO: send Flare data to server, update screen
-		Log.w("Unimplemented", "Placeholder flare");
+		System.out.println("Placeholder flare");
 		
 		List<GeoPoint> list = getFlareLocations();
 		List<Overlay> listOfOverlays = mapView.getOverlays();

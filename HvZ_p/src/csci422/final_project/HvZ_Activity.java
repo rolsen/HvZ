@@ -56,7 +56,7 @@ public class HvZ_Activity extends Activity {
 		final Button flareButton = (Button) findViewById(R.id.shoot_flare);
 		flareButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Log.w("HAI", "flare button says 'ey!");
+				System.out.println("shooting flare");
 				
 				Intent i = new Intent(HvZ_Activity.this, MiniMapActivity.class);
 				
