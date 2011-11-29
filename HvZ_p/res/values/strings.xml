@@ -10,6 +10,7 @@
     <string name="human_label">Human Player Code</string>
     <string name="report">Report A Kill</string>
     <string name="mini_map">Mini Map</string>
+    <string name="codeLabel">Player Code</string>
     <string name="id_label"></string>
     <string name="profile">Profile Settings</string>
 

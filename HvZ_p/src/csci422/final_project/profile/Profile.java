@@ -66,6 +66,10 @@ public class Profile {
 	 * @return
 	 */
 	public boolean validId() {
+		return validId(id);
+	}
+	
+	public static boolean validId(String id) {
 		boolean valid;
 		
 		// Check length is 5

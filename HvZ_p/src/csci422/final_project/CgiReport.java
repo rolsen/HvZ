@@ -22,16 +22,19 @@ public class CgiReport extends CgiGet {
 		String result = "error";
 		
 		try {
-			URL kill = new URL(profile.getReportKillURL());
-			URLConnection connection = kill.openConnection();
-			connection.setDoOutput(true);
-			PrintStream out = new PrintStream(connection.getOutputStream());
-			out.println("z_code="+args[0]+ " h_code="+args[1] + " hour="+args[2]+" minute="+args[3] + " AP="+args[4] + " month="+args[5]+" day="+args[6]);
+			String params = "z_code="+args[0]+ "&h_code="+args[1] + "&hour="+args[2]+"&minute="+args[3] + "&AP="+args[4] 
+					+ "&month="+args[5]+"&day="+args[6];
+			URL kill = new URL(profile.getReportKillURL()+ "?" + params);
 			
-			out.close();
+			URLConnection connection = kill.openConnection();
+			//connection.setDoOutput(true);
+			//PrintStream out = new PrintStream(connection.getOutputStream());
+			//out.println(params);
+			
+			//out.close();
 			DataInputStream in = new DataInputStream(connection.getInputStream());
 			result = in.readLine();
-			in.close();		
+			in.close();
 			
 		} catch (MalformedURLException e) {
 			System.out.println("CONNECTION ERROR1");
