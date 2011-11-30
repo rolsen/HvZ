@@ -31,11 +31,12 @@ def cleanLine(line):
             ap = "PM"
             hr = int(hr) - 12
         else:
+            ap = "AM"
             if int(hr) == 12:
                 ap = "PM"
             elif int(hr) == 0:
                 hr = 12
-                ap = "AM"
+            
 
         date = ""
         date += str(hr)
