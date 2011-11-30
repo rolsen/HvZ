@@ -68,8 +68,8 @@ public class PlayersActivity extends Activity {
 					TextView kills = new TextView(this);
 
 
-					if(parts[0].length()>10) {
-						code.setText(parts[0].substring(0, 10));
+					if(parts[0].length()>20) {
+						code.setText(parts[0].substring(0, 20));
 					}
 					else {
 						code.setText(parts[0]);
