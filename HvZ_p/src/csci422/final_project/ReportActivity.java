@@ -92,7 +92,7 @@ public class ReportActivity extends Activity {
 		{
 			public void onFocusChange(View V, boolean hasFocus) {
 				if(hasFocus==true){
-					if(humanCode.getText().toString().compareTo("Human Player Code")==0){
+					if(humanCode.getText().toString().compareTo("Human")==0){
 						humanCode.setText("");
 					}
 				}
