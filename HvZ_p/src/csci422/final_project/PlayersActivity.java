@@ -9,8 +9,11 @@ import csci422.final_project.R;
 import csci422.final_project.profile.Profile;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.ViewGroup.*;
 import android.widget.TableRow.LayoutParams;
@@ -48,14 +51,22 @@ public class PlayersActivity extends Activity {
 			s.setText("Status");
 			f.setText("Last Feed");
 			k.setText("Kills");
+			
+			c.setTypeface(null, Typeface.BOLD);
+			s.setTypeface(null, Typeface.BOLD);
+			f.setTypeface(null, Typeface.BOLD);
+			k.setTypeface(null, Typeface.BOLD);
 
 			t.addView(c);
 			t.addView(s);
 			t.addView(f);
 			t.addView(k);
-
+			
+			View v = new View(this);
+			v.setBackgroundColor(Color.WHITE);
+			
 			tl.addView(t,new TableLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
-
+			tl.addView(v, new TableLayout.LayoutParams(LayoutParams.FILL_PARENT, 3));
 			while ((inputLine = in.readLine()) != null){
 				//System.out.println(inputLine);
 				String [] parts = inputLine.split("\\|");
@@ -77,6 +88,19 @@ public class PlayersActivity extends Activity {
 					stat.setText(parts[1]);
 					feed.setText(parts[2]);
 					kills.setText(parts[3]);
+					
+					if(parts[1].equals("Z")) {
+						code.setTextColor(Color.RED);
+						stat.setTextColor(Color.RED);
+						feed.setTextColor(Color.RED);
+						kills.setTextColor(Color.RED);
+					}
+					else if (parts[1].equals("D")){
+						code.setTextColor(Color.DKGRAY);
+						stat.setTextColor(Color.DKGRAY);
+						feed.setTextColor(Color.DKGRAY);
+						kills.setTextColor(Color.DKGRAY);
+					}
 
 					//System.out.println(parts[0] + parts[1] + parts[2] + parts[3]);
 					//tr.removeAllViews();
@@ -84,10 +108,15 @@ public class PlayersActivity extends Activity {
 					tr.addView(stat);
 					tr.addView(feed);
 					tr.addView(kills);
+					
+					
+					
+					View v1 = new View(this);
+					v1.setBackgroundColor(Color.WHITE);
 
 					/* Add row to TableLayout. */
 					tl.addView(tr,new TableLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
-
+					tl.addView(v1, new TableLayout.LayoutParams(LayoutParams.FILL_PARENT, 1));
 				}
 			}
 

@@ -6,23 +6,51 @@
     android:gravity="center|center_vertical|right"
     android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/zombie"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:inputType="number"
-        android:maxLength="5" />
-        <!-- android:text="@string/zombie_label"-->
+    <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal" >
+    
+        <TextView
+            android:id="@+id/zLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zombie_label"
+            android:textSize="20sp" />
+    
+	    <EditText
+	        android:id="@+id/zombie"
+	        android:layout_width="100dp"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:inputType="number"
+	        android:maxLength="5" />
+	        <!-- android:text="@string/zombie_label"-->
+		       
+	</LinearLayout>
 
-    <EditText
-        android:id="@+id/human"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:inputType="number"
-        android:text="@string/human_label"
-        android:maxLength="5" />
+    <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal" >
+    
+        <TextView
+            android:id="@+id/hLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/human_label"
+            android:textSize="20sp" />
+    
+		<EditText
+		    android:id="@+id/human"
+		    android:layout_width="100dp"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center"
+		    android:inputType="number"
+		    android:maxLength="5" />
+	</LinearLayout>
     <TimePicker
         android:id="@+id/time"
         android:layout_width="wrap_content"

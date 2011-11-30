@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import csci422.final_project.profile.Profile;
 
@@ -29,12 +30,15 @@ public class ProfileActivty extends Activity {
 	public void onCreate(Bundle b) {
 		super.onCreate(b);
 		requestWindowFeature(Window.FEATURE_LEFT_ICON);
-		setContentView(R.layout.profile);
+		setContentView(R.layout.profile);		
 		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_hvz);
 		Profile profile = Profile.getInstance();
 		
 		final EditText idTextbox = (EditText) findViewById(R.id.playerId);
 		idTextbox.setText(profile.getId());
+		
+		TextView t = (TextView)findViewById(R.id.labelId);
+		t.setPadding(0, 0, 20, 0);
 		
 		final Button saveButton = (Button) findViewById(R.id.save);
 		saveButton.setOnClickListener(new View.OnClickListener() {

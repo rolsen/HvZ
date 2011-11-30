@@ -87,21 +87,11 @@ public class ReportActivity extends Activity {
 		//Set Zombie Code to user ID
 		zombieCode.setText(profile.getId());
 		
-		//remove text from human when selected
-		humanCode.setOnFocusChangeListener(new OnFocusChangeListener()
-		{
-			public void onFocusChange(View V, boolean hasFocus) {
-				if(hasFocus==true){
-					if(humanCode.getText().toString().compareTo("Human")==0){
-						humanCode.setText("");
-					}
-				}
-			}
-		});
+		TextView tz = (TextView)findViewById(R.id.zLabel);
+		tz.setPadding(0, 0, 20, 0);
 		
-		
-		
-		
+		TextView th = (TextView)findViewById(R.id.hLabel);
+		th.setPadding(0, 0, 20, 0);
 		
 		report.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View V) {
