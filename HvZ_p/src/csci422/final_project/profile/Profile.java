@@ -1,11 +1,7 @@
 package csci422.final_project.profile;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-
-import android.content.Context;
-import android.widget.Toast;
 
 /**
  * This class holds profile data for the current user

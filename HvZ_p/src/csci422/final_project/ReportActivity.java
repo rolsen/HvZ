@@ -1,34 +1,22 @@
 package csci422.final_project;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
-
 import csci422.final_project.R;
 import csci422.final_project.exception.HumanIdException;
 import csci422.final_project.exception.ZombieIdException;
 import csci422.final_project.profile.Profile;
 import csci422.final_project.report.KillReport;
-
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.view.Window;
-import android.view.View.OnFocusChangeListener;
 import android.widget.*;
 
 public class ReportActivity extends Activity {

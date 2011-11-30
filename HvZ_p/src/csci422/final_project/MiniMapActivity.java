@@ -143,7 +143,7 @@ public class MiniMapActivity extends MapActivity {
 		catch (IllegalArgumentException e) {
 			System.out.println("getUserLocation detects emulator instead of real device");
 			
-			Location userLocation = new Location(LocationManager.PASSIVE_PROVIDER);
+			Location userLocation = new Location(LocationManager.GPS_PROVIDER);
 			userLocation.setLatitude(BROWN_MICRO_LAT / 1e6);
 			userLocation.setLongitude(BROWN_MICRO_LNG / 1e6);
 			
