@@ -1,0 +1,26 @@
+Google Maps API
+
+    Google Code Home >
+    Google Maps API >
+    Google Maps API Signup
+
+Thank you for signing up for an Android Maps API key!
+
+Your key is:
+
+0IoppOWFLVmOIN5e5_QHSRm2y7l8TY8ITW-BXBw
+
+This key is good for all apps signed with your certificate whose fingerprint is:
+
+09ab94818614533e36687da070805b69
+
+Here is an example xml layout to get you started on your way to mapping glory:
+
+              <com.google.android.maps.MapView
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:apiKey="0IoppOWFLVmOIN5e5_QHSRm2y7l8TY8ITW-BXBw"
+                 />
+
+
+Check out the API documentation for more information.
