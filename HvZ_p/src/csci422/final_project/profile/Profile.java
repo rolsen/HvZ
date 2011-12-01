@@ -1,7 +1,8 @@
 package csci422.final_project.profile;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
+import android.content.*;
 
 /**
  * This class holds profile data for the current user
@@ -101,8 +102,35 @@ public class Profile {
 		id = newId;
 	}
 	
-	public void saveId() {
+	public void saveId(Context c) {
 		// Logic to save to file
+		try {
+			FileOutputStream fos = c.openFileOutput(FILENAME, Context.MODE_PRIVATE);
+			//fos.write(id.getBytes());
+			for (int i = 0; i <id.length(); ++i)
+			    fos.write((byte)id.charAt(i));
+			fos.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Output file could not be created to store player code.");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Could not print to output file.");
+		}
+		
+		//test to see if can read directly from creations
+		/*StringBuilder inb = new StringBuilder();
+		try {
+			FileInputStream fis = c.openFileInput(FILENAME);
+			int ch;
+			while((ch = fis.read()) != -1)
+			    inb.append((char)ch);
+			
+		} catch (FileNotFoundException e) {
+			System.out.println("Could not open or find the file with the player code.");
+		} catch (IOException e) {
+			System.out.println("Could not read from the player code file.");
+		}
+		System.out.println(inb);*/
 	}
 
 	public String getPlayerListURL() {
