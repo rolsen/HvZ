@@ -1,5 +1,10 @@
 package csci422.final_project;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +42,11 @@ public class MiniMapActivity extends MapActivity {
 	int BROWN_MICRO_LNG = -105221247;
 	
 	private static final String DEFAULT_SERVER_URL = "http://inside.mines.edu/~cloew/";
-	private static final String REPORT_FLARE_ACTION = "cgi-bin/flareReport.cgi"; 
-
+	private static final String REPORT_FLARE_ACTION = "cgi-bin/flareReport.cgi";
+	private static final String FLARE_LIST = "cgi-bin/flareList.cgi";
+	
+	private static final String GENERAL_ERROR = "Something went wrong.";
+	
 	class FlareOverlay extends com.google.android.maps.Overlay
 	{
 		GeoPoint point;
@@ -167,15 +175,40 @@ public class MiniMapActivity extends MapActivity {
 	public List<GeoPoint> getFlareLocations() {
 		List<GeoPoint> list = new ArrayList<GeoPoint>();
 		
-		// TODO: Get actual locations from server
 		// Begin TEMP
-		GeoPoint near_ch = new GeoPoint(CH_MICRO_LAT,CH_MICRO_LNG);
-		list.add(near_ch);
-		
-
-		GeoPoint a_point = new GeoPoint(A_POINT_MICRO_LAT,A_POINT_MICRO_LNG);
-		list.add(a_point);
+//		GeoPoint near_ch = new GeoPoint(CH_MICRO_LAT,CH_MICRO_LNG);
+//		list.add(near_ch);
+//		
+//		GeoPoint a_point = new GeoPoint(A_POINT_MICRO_LAT,A_POINT_MICRO_LNG);
+//		list.add(a_point);
 		// End TEMP
+		
+		// foo
+		try {
+			URL flareListURL = new URL(getFlareListURL());
+			
+			BufferedReader in = new BufferedReader(
+					new InputStreamReader(flareListURL.openStream()));
+			
+			String inputLine;
+			String delimiters = "\\|"; // Not sure if this works
+			String[] tokens = new String[3];
+			int lat, lng;
+			
+			while ((inputLine = in.readLine()) != null) {
+				System.out.printf("line: %s\n", inputLine);
+				tokens = inputLine.split(delimiters);
+				lat = Integer.parseInt(tokens[0]);
+				lng = Integer.parseInt(tokens[1]);
+				list.add(new GeoPoint(lat, lng));
+			}
+			
+			in.close();
+		} catch (MalformedURLException e) {
+			Toast.makeText(getApplicationContext(), GENERAL_ERROR, Toast.LENGTH_LONG).show();
+		} catch (IOException e) {
+			Toast.makeText(getApplicationContext(), GENERAL_ERROR, Toast.LENGTH_LONG).show();
+		}
 		
 		return list;
 	}
@@ -203,7 +236,11 @@ public class MiniMapActivity extends MapActivity {
 		t.show();
 	}
 	
-	public String getFlareURL() {
+	public String getFlareReportURL() {
 		return DEFAULT_SERVER_URL + REPORT_FLARE_ACTION;
+	}
+	
+	public String getFlareListURL() {
+		return DEFAULT_SERVER_URL + FLARE_LIST;
 	}
 }
