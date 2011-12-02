@@ -23,7 +23,7 @@ public class KillReport {
 		
 		// Get date
 		day = date.getDayOfMonth();
-		month = date.getMonth();
+		month = date.getMonth() + 1; // Server requires it to  be 1-12, not 0-11
 		
 		// Get time
 		hour = time.getCurrentHour();
