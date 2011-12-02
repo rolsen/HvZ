@@ -37,7 +37,7 @@ public class MiniMapActivity extends MapActivity {
 	int BROWN_MICRO_LNG = -105221247;
 	
 	private static final String DEFAULT_SERVER_URL = "http://inside.mines.edu/~cloew/";
-	private static final String REPORT_FLARE_ACTION = "cgi-bin/flare.cgi"; 
+	private static final String REPORT_FLARE_ACTION = "cgi-bin/flareReport.cgi"; 
 
 	class FlareOverlay extends com.google.android.maps.Overlay
 	{
