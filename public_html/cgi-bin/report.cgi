@@ -23,10 +23,6 @@ $minute=$INPUT{minute};
 $AP=$INPUT{AP};
 $month=$INPUT{month};
 $day=$INPUT{day};
-
-open (MYFILE, '>>data.txt');
-  print MYFILE "Input: $z_code, $h_code, $hour, $minute, $AP, $month, $day\n";
-close (MYFILE);
  
 if($z_code eq $h_code)
 {
