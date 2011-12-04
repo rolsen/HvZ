@@ -59,7 +59,7 @@ foreach $line (@old_page)
       print DAT "<br>Active Players: $players";
       print DAT "<br>Humans: $humans";
       print DAT "<br>Zombies: $zombies";
-      print DAT "<br>Most Kills: $mostkills ($maxkills)";
+      print DAT "<br>Most Kills: $mostkills ($maxkills)\n";
       print DAT "<!--EndStat-->";
    }
 
@@ -187,7 +187,8 @@ foreach $line (@old_page)
    }
 
    if(($line eq $end) || ($line eq $endstat))
-   {
+   {  
+      print "DONE\n";
       $var=1;
    }
 }
