@@ -6,7 +6,7 @@ open(DAT, $data_file) || die("Could not open file!");
 @raw_data=<DAT>;
 close(DAT);
 
-open(DAT, "../players.html") || die("Could not open file!");
+open(DAT, ">../players.html") || die("Could not open file!");
 @old_page=<DAT>;
 close(DAT);
 
