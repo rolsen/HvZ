@@ -42,8 +42,6 @@ Andrea Christians|Tobias |D|00.10.26.10.298|2|17924|achristi@mines.edu|0
 Todd Muhlack|Todd|D|15.15.28.10.300|5|11414|tmuhlack@mymail.mines.edu|0
 James Kergosien|Traaaaaiiiiins|H|N/A|0|11470|jkergosi@mines.edu|0
 Tyrel Leland Jacobsen|Tray|D|30.18.24.10.296|0|19804|tjacobse@mines.edu|0
-Peyton Hallums|TYTO|D|00.12.24.10.296|0|15366|peyhallums@gmail.com|0
 Jesse Chipman|Undefined|D|00.10.26.10.298|1|15029|jchipman@mines.edu|0
 Spencer Coleman|Us3d Napkin|D|00.18.24.10.296|4|18303|scoleman@mines.edu|0
-Sam Tayloe|Warchild|D|00.18.25.10.297|0|13427|stayloe@mines.edu|0
 Marty Otzenberger|Wheatley|D|30.12.28.10.300|1|16409|motzenbe@mines.edu|0

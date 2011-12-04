@@ -37,21 +37,30 @@ public class Profile {
 	String id;
 	String currentURL;
 	
-	private Profile() {
+	private Profile(Context c) {
 		reset();
 		
-		// Read from file to get ID
-		File profileData = new File(FILENAME);
-		if (profileData.exists()) {
-			// Read the id and URL
-			// id =
-			// currentURL = 
+		//This code is used to set the code name in profile with each start.
+		StringBuilder inb = new StringBuilder();
+		try {
+			FileInputStream fis = c.openFileInput(FILENAME);
+			int ch;
+			while((ch = fis.read()) != -1)
+			    inb.append((char)ch);
+			
+		} catch (FileNotFoundException e) {
+			System.out.println("Could not open or find the file with the player code.");
+		} catch (IOException e) {
+			System.out.println("Could not read from the player code file.");
 		}
+		
+		setId(String.valueOf(inb));		
+
 	}
 	
-	public static Profile getInstance() {
+	public static Profile getInstance(Context c) {
 		if (profile == null) {
-			profile = new Profile();
+			profile = new Profile(c);
 		}
 		return profile;
 			
@@ -116,21 +125,6 @@ public class Profile {
 			// TODO Auto-generated catch block
 			System.out.println("Could not print to output file.");
 		}
-		
-		//test to see if can read directly from creations
-		/*StringBuilder inb = new StringBuilder();
-		try {
-			FileInputStream fis = c.openFileInput(FILENAME);
-			int ch;
-			while((ch = fis.read()) != -1)
-			    inb.append((char)ch);
-			
-		} catch (FileNotFoundException e) {
-			System.out.println("Could not open or find the file with the player code.");
-		} catch (IOException e) {
-			System.out.println("Could not read from the player code file.");
-		}
-		System.out.println(inb);*/
 	}
 
 	public String getPlayerListURL() {

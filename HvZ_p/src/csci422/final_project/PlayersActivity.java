@@ -24,7 +24,7 @@ public class PlayersActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		setContentView(R.layout.players);
 		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_hvz);
-		Profile profile = Profile.getInstance();
+		Profile profile = Profile.getInstance(getApplicationContext());
 
 		try {
 			URL playerListURL = new URL(profile.getPlayerListURL());

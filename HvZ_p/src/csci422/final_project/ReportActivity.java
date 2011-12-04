@@ -63,7 +63,7 @@ public class ReportActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		setContentView(R.layout.report);
 		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_hvz);
-		Profile profile = Profile.getInstance();
+		Profile profile = Profile.getInstance(getApplicationContext());
 		
 
 		final EditText zombieCode = (EditText) findViewById(R.id.zombie);
@@ -83,7 +83,7 @@ public class ReportActivity extends Activity {
 		
 		report.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View V) {
-				Profile profile = Profile.getInstance();
+				Profile profile = Profile.getInstance(getApplicationContext());
 				
 				KillReport killReport = new KillReport(zombieCode, humanCode, date, time);
 				

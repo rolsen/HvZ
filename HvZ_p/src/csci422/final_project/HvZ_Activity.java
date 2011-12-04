@@ -14,7 +14,6 @@ import csci422.final_project.profile.Profile;
 public class HvZ_Activity extends Activity {
 	private static final String WARNING = "Invalid Player Code.\n" +
 			"Please go to your Profile to update.";
-	private static final String FILENAME ="PlayerCodeFile";
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -24,22 +23,7 @@ public class HvZ_Activity extends Activity {
 		setContentView(R.layout.main);
 		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_hvz);
 		
-		//This code is used to set the code name in profile with each start.
-		StringBuilder inb = new StringBuilder();
-		try {
-			FileInputStream fis = getApplicationContext().openFileInput(FILENAME);
-			int ch;
-			while((ch = fis.read()) != -1)
-			    inb.append((char)ch);
-			
-		} catch (FileNotFoundException e) {
-			System.out.println("Could not open or find the file with the player code.");
-		} catch (IOException e) {
-			System.out.println("Could not read from the player code file.");
-		}
-		Profile p = Profile.getInstance();
-		p.setId(String.valueOf(inb));		
-
+		
 		// code used to create the activity for retrieving player info
 		final Button playerButton = (Button) findViewById(R.id.player_list);
 		playerButton.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +102,7 @@ public class HvZ_Activity extends Activity {
 	@Override
 	public void onResume() {
 		super.onResume();
-		Profile profile = Profile.getInstance();
+		Profile profile = Profile.getInstance(getApplicationContext());
 		
 		if (!profile.validId()) {
 			//Toast.makeText(getApplicationContext(), WARNING, Toast.LENGTH_LONG).show();

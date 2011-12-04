@@ -24,7 +24,7 @@ public class ProfileActivty extends Activity {
 		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		setContentView(R.layout.profile);		
 		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_hvz);
-		Profile profile = Profile.getInstance();
+		Profile profile = Profile.getInstance(getApplicationContext());
 		
 		final EditText idTextbox = (EditText) findViewById(R.id.playerId);
 		idTextbox.setText(profile.getId());
@@ -35,7 +35,7 @@ public class ProfileActivty extends Activity {
 		final Button saveButton = (Button) findViewById(R.id.save);
 		saveButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Profile profile = Profile.getInstance();
+				Profile profile = Profile.getInstance(getApplicationContext());
 				final EditText idTextbox = (EditText) findViewById(R.id.playerId);
 				
 				profile.setId(idTextbox.getText().toString());

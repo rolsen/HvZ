@@ -16,7 +16,7 @@ public class CgiReport extends CgiGet {
 		super(name, args, type);
 	}
 
-	public String reportKill() {
+	/*public String reportKill() {
 		Profile profile = Profile.getInstance();
 		
 		String result = "error";
@@ -44,6 +44,6 @@ public class CgiReport extends CgiGet {
 			System.out.println("z_code="+args[0]+ " h_code="+args[1] + " hour="+args[2]+" minute="+args[3] + " AP="+args[4] + " month="+args[5]+" day="+args[6]);
 		}
 		return result;
-	}
+	}*/
 }
 

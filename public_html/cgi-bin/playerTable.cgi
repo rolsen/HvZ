@@ -10,7 +10,7 @@ open(DAT, "../players.html") || die("Could not open file!");
 @old_page=<DAT>;
 close(DAT);
 
-open(DAT, "../players.html") || die("Could not open file!");
+open(DAT, ">../players.html") || die("Could not open file!");
 
 $var=1;
 
@@ -26,9 +26,25 @@ foreach $line (@old_page)
    $end = "<!-EndTable-->\n";
    $ststart = "<!--BegStat-->\n";
    $endstat = "<!--EndStat-->\n";
-
+   
+   #$test = "<!-Table-->";
+   #$b = substr($line, 0, -1);
+   
+   #print "Newline\n$test\n$b\n$line";
+   #if  ($b eq $test)
+   #{
+   #     print "B is equal\n";
+   #}
+   #if  (($start . "\n") eq $test)
+   #{
+   #     print "Test is the start piece\n";
+   #}
+   #print "\n";
+   
+   
    if(($line ne $start) && ($line ne $ststart))
    {
+      #print "^ None of the above\n";
       if($var==1)
       {
          print DAT "$line";
@@ -37,6 +53,7 @@ foreach $line (@old_page)
 
    if($line eq $ststart)
    {
+      #print "^ Stat Start\n";
       $var=0;
       print DAT "<!--BegStat-->\n";
       print DAT "<br>Active Players: $players";
@@ -48,6 +65,7 @@ foreach $line (@old_page)
 
    if($line eq $start)
    {
+      #print "^ Start\n";
       $var=0;
       print DAT "<!-Table-->\n";
       print DAT "<table class=F4 border=2 bordercolor=#000000>\n";
