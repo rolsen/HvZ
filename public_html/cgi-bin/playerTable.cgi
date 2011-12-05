@@ -178,7 +178,7 @@ print DAT "<br><br>&copy 2011 Maxwell Mazzocchi</div>\n<br>\n<br>\n<a href=\"/PH
 
 close(DAT);
 
-print "Location: http://inside.mines.edu/~mmazzocc/players1.html\n\n";
+print "Location: http://inside.mines.edu/~cloew/players1.html\n\n";
 
 #Copyright 2011 Max Mazzocchi
 
