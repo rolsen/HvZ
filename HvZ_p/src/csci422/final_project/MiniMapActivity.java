@@ -3,8 +3,11 @@ package csci422.final_project;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,7 +105,13 @@ public class MiniMapActivity extends MapActivity {
 		mapController = mapView.getController();
 		mapController.setZoom(DEFAULT_ZOOM_LEVEL);
 
-		drawMap();
+		Bundle b = getIntent().getExtras();
+		if ((b != null) && b.getBoolean("shootFlare")) {
+			shootFlare();
+		}
+		else {
+			drawMap(false);
+		}
 
 		final Button button = (Button) findViewById(R.id.flare);
 		button.setOnClickListener(new View.OnClickListener() {
@@ -110,11 +119,6 @@ public class MiniMapActivity extends MapActivity {
 				shootFlare();
 			}
 		});
-
-		Bundle b = getIntent().getExtras();
-		if ((b != null) && b.getBoolean("shootFlare")) {
-			shootFlare();
-		}
 
 		if (isRealPhone()) {
 			initiateLocationListening();
@@ -160,7 +164,7 @@ public class MiniMapActivity extends MapActivity {
 		}
 	}
 
-	public void drawMap() {
+	public void drawMap(boolean flare) {
 		userLocation = getUserLocation();
 
 		mapController.animateTo(userLocation);
@@ -176,20 +180,47 @@ public class MiniMapActivity extends MapActivity {
 			}
 			System.out.println("list is not null");
 		}
+
+		if (flare) {
+			String request = String.format("%s?lat=%s&lng=%s",
+					getFlareReportURL(), 
+					userLocation.getLatitudeE6(), 
+					userLocation.getLongitudeE6());
+			System.out.printf("req: %s\n", request);
+			try {
+//				// Construct data
+//				String data = URLEncoder.encode("key1", "UTF-8") + "=" + URLEncoder.encode("value1", "UTF-8");
+//				data += "&" + URLEncoder.encode("key2", "UTF-8") + "=" + URLEncoder.encode("value2", "UTF-8");
+
+				// Send data
+				URL url = new URL(request);
+				URLConnection conn = url.openConnection();
+				conn.setDoOutput(true);
+				OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+				wr.write('0'); // wr.write(data);
+				wr.flush();
+
+				// Get the response
+				BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+				String line;
+				while ((line = rd.readLine()) != null) {
+					System.out.printf("URL line: %s\n", line);
+				}
+				wr.close();
+				rd.close();
+			} catch (Exception e) {
+				System.out.printf("damn\n");
+			}
+			FlareOverlay mapOverlay = new FlareOverlay(userLocation);
+			listOfOverlays.add(mapOverlay);
+		}
+
 		mapView.invalidate(); // Calls onDraw()
 	}
 
 	// May return a null List
 	public List<GeoPoint> getFlareLocations() {
 		List<GeoPoint> list = new ArrayList<GeoPoint>();
-
-		// Begin TEMP
-		//		GeoPoint near_ch = new GeoPoint(CH_MICRO_LAT,CH_MICRO_LNG);
-		//		list.add(near_ch);
-		//		
-		//		GeoPoint a_point = new GeoPoint(A_POINT_MICRO_LAT,A_POINT_MICRO_LNG);
-		//		list.add(a_point);
-		// End TEMP
 
 		try {
 			URL flareListURL = new URL(getFlareListURL());
@@ -203,21 +234,17 @@ public class MiniMapActivity extends MapActivity {
 
 			inputLine = in.readLine();
 			while (inputLine != null) {
-				// inputLine = inputLine.replace("\n", "");
 				if (inputLine.compareTo("<br/>") == 0 || inputLine.compareTo("<br />") == 0) {
 					inputLine = in.readLine();
 					continue;
 				}
 
 				System.out.printf("LINEE: %s\n", inputLine);
-
 				String[] tokens  = inputLine.split(pipeDelimiter);
 
 				if (tokens.length < 3) {
 					return list;
 				}
-
-				System.out.printf("line: %s, %s\n", tokens[0], tokens[1]);
 				lat = Integer.parseInt(tokens[0]);
 				lng = Integer.parseInt(tokens[1]);
 				list.add(new GeoPoint(lat, lng));
@@ -239,20 +266,8 @@ public class MiniMapActivity extends MapActivity {
 		// TODO: send Flare data to server, update screen
 		System.out.println("Placeholder flare");
 
-		List<GeoPoint> list = getFlareLocations();
-		List<Overlay> listOfOverlays = mapView.getOverlays();
-		listOfOverlays.clear();
-
-		for (GeoPoint point : list) {
-			FlareOverlay mapOverlay = new FlareOverlay(point);
-			listOfOverlays.add(mapOverlay);
-		}
-
-		GeoPoint brown_point = new GeoPoint(BROWN_MICRO_LAT, BROWN_MICRO_LNG);
-		FlareOverlay mapOverlay = new FlareOverlay(brown_point);
-		listOfOverlays.add(mapOverlay);
-
-		mapView.invalidate(); // Calls onDraw()
+		boolean flare = true;
+		drawMap(flare);
 
 		Toast t = Toast.makeText(getApplicationContext(), "You have fired your flare gun!", Toast.LENGTH_LONG);
 		t.show();
@@ -260,7 +275,7 @@ public class MiniMapActivity extends MapActivity {
 
 	public void updateUserLocation(Location loc) {
 		userLocation = geoPointFromLocation(loc);
-		drawMap();
+		drawMap(false);
 	}
 
 	public void initiateLocationListening() {
