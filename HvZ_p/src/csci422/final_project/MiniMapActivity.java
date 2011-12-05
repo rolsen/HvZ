@@ -192,9 +192,8 @@ public class MiniMapActivity extends MapActivity {
 			BufferedReader in = new BufferedReader(
 					new InputStreamReader(flareListURL.openStream()));
 
-			System.out.printf("URL: %s\n", flareListURL);
 			String inputLine;
-			String delimiters = "\\|";
+			String pipeDelimiter = "\\|";
 			int lat, lng;
 			
 			inputLine = in.readLine();
@@ -206,10 +205,9 @@ public class MiniMapActivity extends MapActivity {
 				}
 				System.out.printf("LINE: %s\n", inputLine);
 				
-				String[] tokens  = inputLine.split(delimiters);
+				String[] tokens  = inputLine.split(pipeDelimiter);
 				
-				if (tokens.length < 2) {
-					System.out.println("No flares currently found");
+				if (tokens.length < 3) {
 					return list;
 				}
 				

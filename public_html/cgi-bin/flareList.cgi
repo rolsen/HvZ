@@ -43,7 +43,6 @@ def stillValid(line):
 
 if __name__ == "__main__":
     print "Content-type: text/html\n"
-    print
 
     file = open('FlareData.txt', 'r+')
 
