@@ -1,47 +1,22 @@
-Chris Loew|Chrispy Chris|H|N/A|0|11111|cloew@mines.edu|0
-Rory Olsen|Gory Rory|Z|18.21.27.11.335|25|44444|rolsen@mines.edu|0
-Cyndi Rader|Professor Death|D|00.21.21.11.330|0|12345|kraber@mymail.mines.edu|0
-Kevin Raber|Shotty|H|N/A|0|22222|kraber@mymail.mines.edu|0
-Joe Fake|Singularity|H|N/A|0|33333|kraber@mines.edu|0
-Christina Snyder|Sitting Duck|D|55.14.28.10.300|2|11863|chsnyder@mines.edu|2
-devin weekley|SkippyD|D|15.17.26.10.298|1|13584|dweekley@mines.edu|0
-Jacob Jahner|Skrillex|H|N/A|0|13552|jjahner@mines.edu|0
-Chelsea Keene|Slider|D|00.12.27.10.299|1|13442|che.daw.kee@gmail.com|0
-Leah Marshall|smanga|D|45.11.26.10.298|2|11366|lemarsha@mymail.mines.edu|0
-Alexaundria Engleby|Snap|D|55.17.25.10.297|1|16845|aengleby@gmail.com|0
-Andrew Kao|Sonic The Edgehog|D|00.9.27.10.299|2|13437|kaoandrew@msn.com|0
-Jeff Pena|spartan923|D|55.15.28.10.300|8|12719|jpena@mines.edu|0
-Scott McClary|Squirtle Squad|D|00.6.28.10.300|2|10375|smcclary@mines.edu|1
-Travis Boyd|Stem|H|N/A|0|17342|trboyd@mymail.mines.edu|0
-Kyle Rovick|SterlingMaloryArcher|D|00.12.27.10.299|6|11367|krovick@mines.edu|0
-Steven Edward Blickley|Stevil|D|25.18.27.10.299|3|11331|sblickle@mines.edu|0
-Maria Monroe|Storm|D|15.12.27.10.299|2|17873|mamonroe@mines.edu|0
-Alli Nilles|straight-up-Z|D|53.17.26.10.298|2|14740|anilles@mines.edu|0
-Sydney Rogers|Syd the Kid|H|N/A|0|14359|syrogers@mines.edu|0
-Karen Kron|Tallahassee|H|N/A|0|12600|kkron@mines.edu|0
-Aaron Swank|Tank|D|00.14.28.10.300|3|10637|aswank@mines.edu|0
-Tara Brodie|Tara|H|N/A|0|13677|tbrodie@mymail.mines.edu|0
-Colby Aspen Tomlinson|TH3 SNIP3R 23|H|N/A|0|15657|ctomlins@mymail.mines.edu|0
-Trevor Haak|thaak|D|00.12.27.10.299|5|19787|thaak@mines.edu|0
-Daniel Donat|That One Guy|D|00.16.25.10.297|0|13401|ddonat@mines.edu|0
-Ben Skinner|The Alpha Wookie|D|30.14.27.10.299|3|15509|bskinner@mines.edu|0
-Kevin Aussie Moran|The Cool Bean|D|00.17.25.10.297|0|13424|kmoran@mymail.mines.edu|0
-Daniel Grant Christen|The Doctor|D|30.14.27.10.299|1|13182|dchriste@mines.edu|0
-Michael Lewis|The Goon|D|25.13.27.10.299|0|17114|mlewis@mines.edu|0
-Colin Royston|The Gourd of Weaver Towers|H|N/A|0|16201|croyston@mymail.mines.edu|0
-Tyler Coryell|The Last Twinkie|H|N/A|0|17006|tcoryell@mymail.mines.edu|0
-Zachary Fitzgerald|The Scotsman|D|30.13.26.10.298|0|15307|zfitzger@mines.edu|0
-Brianna Fidder|TheDoctor|D|50.17.27.10.299|1|16107|bfidder@mines.edu|0
-Andrew Potter|thedude190|D|55.14.28.10.300|1|16593|APotter190@gmail.com|1
-Andrew Wilson|THOR|D|00.13.26.10.298|1|17382|aawilson93@gmail.com|0
-Austin Roup|Thrower120|H|N/A|0|11580|81roup@live.com|0
-Bryce Taylor|THX1138|D|00.13.26.10.298|0|16471|brytaylo@mines.edu|0
-Charlie Asprey|Tim Waite|D|00.19.28.10.300|0|17120|casprey@mines.edu|1
-Daniel Jost|Toast|D|00.18.25.10.297|0|19375|djost@mines.edu|0
-Andrea Christians|Tobias |D|00.10.26.10.298|2|17924|achristi@mines.edu|0
-Todd Muhlack|Todd|D|15.15.28.10.300|5|11414|tmuhlack@mymail.mines.edu|0
-James Kergosien|Traaaaaiiiiins|H|N/A|0|11470|jkergosi@mines.edu|0
-Tyrel Leland Jacobsen|Tray|D|30.18.24.10.296|0|19804|tjacobse@mines.edu|0
-Jesse Chipman|Undefined|D|00.10.26.10.298|1|15029|jchipman@mines.edu|0
-Spencer Coleman|Us3d Napkin|D|00.18.24.10.296|4|18303|scoleman@mines.edu|0
-Marty Otzenberger|Wheatley|D|30.12.28.10.300|1|16409|motzenbe@mines.edu|0
+Abe Kline|Abe K.|Z|00.08.05.12.338|0|11111|akline@mymail.mines.edu|0
+Noah Towe|Bradford 210|Z|00.08.05.12.338|0|55555|ntowe@mymail.mines.edu|0
+Chris Loew|Chrispy Chris|H|N/A|0|10001|cloew@mines.edu|0
+Kevin R|I'm dead|D|00.08.01.12.334|2|12341|kraber@mymail.mines.edu|2
+Colton Kohnke|Colton K.|Z|00.08.05.12.338|0|33333|ckohnke@mymail.mines.edu|0
+Ethan Morton-Gaught|Ethan Hunt|Z|00.08.05.12.338|0|44444|emortong@mymail.mines.edu|0
+Kevin Ra|I'm also Dead|D|00.08.05.12.334|4|17535|kraber@mymail.mines.edu|1
+Rory Olsen|Gory Rory|H|N/A|0|1002|rolsen@mines.edu|0
+Kevin Raber1|Human1|H|N/A|0|10003|kraber@mymail.mines.edu|0
+Kevin Raber2|Human2|H|N/A|0|10004|kraber@mymail.mines.edu|0
+Kevin Raber3|Human3|H|N/A|0|10005|kraber@mymail.mines.edu|0
+Kevin Raber4|Human4|H|N/A|0|10006|kraber@mymail.mines.edu|0
+Kevin Raber5|Human5|H|N/A|0|10007|kraber@mymail.mines.edu|0
+Kevin Raber6|Human6|H|N/A|0|10008|kraber@mymail.mines.edu|0
+Kevin Raber7|Human7|H|N/A|0|10009|kraber@mymail.mines.edu|0
+Kevin Raber8|Human8|H|N/A|0|10010|kraber@mymail.mines.edu|0
+Kevin Raber9|Human0|H|N/A|0|10011|kraber@mymail.mines.edu|0
+Kevin Raber10|Human10|H|N/A|0|10012|kraber@mymail.mines.edu|0
+Kevin Raber11|Human11|H|N/A|0|10013|kraber@mymail.mines.edu|0
+Kevin Raber12|Human12|H|N/A|0|10014|kraber@mymail.mines.edu|0
+Kevin Raber|Shotty|H|N/A|0|10015|kraber@mymail.mines.edu|0
+Kevin Day|RaveUp|Z|00.08.05.12.338|0|22222|kday@mymail.mines.edu|0
