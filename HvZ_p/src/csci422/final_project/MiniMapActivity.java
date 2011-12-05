@@ -41,7 +41,7 @@ public class MiniMapActivity extends MapActivity {
 	int BROWN_MICRO_LAT = 39749784;
 	int BROWN_MICRO_LNG = -105221247;
 	
-	private static final String DEFAULT_SERVER_URL = "http://inside.mines.edu/~cloew/";
+	private static final String DEFAULT_SERVER_URL = "http://inside.mines.edu/~rolsen/";
 	private static final String REPORT_FLARE_ACTION = "cgi-bin/flareReport.cgi";
 	private static final String FLARE_LIST = "cgi-bin/flareList.cgi";
 	
@@ -164,14 +164,17 @@ public class MiniMapActivity extends MapActivity {
 		List<Overlay> listOfOverlays = mapView.getOverlays();
 		listOfOverlays.clear();
 		
-		for (GeoPoint point : list) {
-			FlareOverlay mapOverlay = new FlareOverlay(point);
-			listOfOverlays.add(mapOverlay);
+		if (list != null) {
+			for (GeoPoint point : list) {
+				FlareOverlay mapOverlay = new FlareOverlay(point);
+				listOfOverlays.add(mapOverlay);
+			}
+			System.out.println("list is not null");
 		}
-		
 		mapView.invalidate(); // Calls onDraw()
 	}
 	
+	// May return a null List
 	public List<GeoPoint> getFlareLocations() {
 		List<GeoPoint> list = new ArrayList<GeoPoint>();
 		
@@ -183,24 +186,39 @@ public class MiniMapActivity extends MapActivity {
 //		list.add(a_point);
 		// End TEMP
 		
-		// foo
 		try {
 			URL flareListURL = new URL(getFlareListURL());
 			
 			BufferedReader in = new BufferedReader(
 					new InputStreamReader(flareListURL.openStream()));
-			
+
+			System.out.printf("URL: %s\n", flareListURL);
 			String inputLine;
-			String delimiters = "\\|"; // Not sure if this works
-			String[] tokens = new String[3];
+			String delimiters = "\\|";
 			int lat, lng;
 			
-			while ((inputLine = in.readLine()) != null) {
-				System.out.printf("line: %s\n", inputLine);
-				tokens = inputLine.split(delimiters);
+			inputLine = in.readLine();
+			while (inputLine != null) {
+				// inputLine = inputLine.replace("\n", "");
+				if (inputLine == "" || inputLine == " " || inputLine == "\n") {
+					System.out.println("got empty line");
+					return list = null;
+				}
+				System.out.printf("LINE: %s\n", inputLine);
+				
+				String[] tokens  = inputLine.split(delimiters);
+				
+				if (tokens.length < 2) {
+					System.out.println("No flares currently found");
+					return list;
+				}
+				
+				System.out.printf("line: %s, %s\n", tokens[0], tokens[1]);
 				lat = Integer.parseInt(tokens[0]);
 				lng = Integer.parseInt(tokens[1]);
 				list.add(new GeoPoint(lat, lng));
+				
+				inputLine = in.readLine();
 			}
 			
 			in.close();
