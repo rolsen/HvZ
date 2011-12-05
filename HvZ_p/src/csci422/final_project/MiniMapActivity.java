@@ -7,7 +7,6 @@ import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -182,22 +181,19 @@ public class MiniMapActivity extends MapActivity {
 		}
 
 		if (flare) {
-			String request = String.format("%s?lat=%s&lng=%s",
-					getFlareReportURL(), 
+			String params = String.format("lat=%s&lng=%s",
 					userLocation.getLatitudeE6(), 
 					userLocation.getLongitudeE6());
-			System.out.printf("req: %s\n", request);
+			System.out.printf("req: %s\n", params);
 			try {
-//				// Construct data
-//				String data = URLEncoder.encode("key1", "UTF-8") + "=" + URLEncoder.encode("value1", "UTF-8");
-//				data += "&" + URLEncoder.encode("key2", "UTF-8") + "=" + URLEncoder.encode("value2", "UTF-8");
-
 				// Send data
-				URL url = new URL(request);
+				URL url = new URL(getFlareReportURL());
 				URLConnection conn = url.openConnection();
 				conn.setDoOutput(true);
+				conn.setUseCaches(false);
+				conn.setRequestProperty("content-type", "application/x-www-form-urlencoded");
 				OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-				wr.write('0'); // wr.write(data);
+				wr.write(params);
 				wr.flush();
 
 				// Get the response
@@ -209,7 +205,7 @@ public class MiniMapActivity extends MapActivity {
 				wr.close();
 				rd.close();
 			} catch (Exception e) {
-				System.out.printf("damn\n");
+				System.out.printf("flareReport error\n");
 			}
 			FlareOverlay mapOverlay = new FlareOverlay(userLocation);
 			listOfOverlays.add(mapOverlay);
@@ -296,7 +292,6 @@ public class MiniMapActivity extends MapActivity {
 		// Register the listener with the Location Manager to receive location updates
 		locationManager.requestLocationUpdates(GPS, UPDATE_MIN_TIME, UPDATE_MIN_DIST, locationListener);
 		locationManager.requestLocationUpdates(NETWORK, UPDATE_MIN_TIME, UPDATE_MIN_DIST, locationListener);
-
 	}
 
 	public String getFlareReportURL() {
