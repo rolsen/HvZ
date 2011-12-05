@@ -199,11 +199,12 @@ public class MiniMapActivity extends MapActivity {
 			inputLine = in.readLine();
 			while (inputLine != null) {
 				// inputLine = inputLine.replace("\n", "");
-				if (inputLine == "" || inputLine == " " || inputLine == "\n") {
-					System.out.println("got empty line");
-					return list = null;
+				if (inputLine.compareTo("<br/>") == 0 || inputLine.compareTo("<br />") == 0) {
+					inputLine = in.readLine();
+					continue;
 				}
-				System.out.printf("LINE: %s\n", inputLine);
+				
+				System.out.printf("LINEE: %s\n", inputLine);
 				
 				String[] tokens  = inputLine.split(pipeDelimiter);
 				
