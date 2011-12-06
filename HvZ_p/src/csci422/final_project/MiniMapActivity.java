@@ -95,6 +95,8 @@ public class MiniMapActivity extends MapActivity {
 		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		setContentView(R.layout.mini_map);
 		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_hvz);
+		
+		locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
 		mapView = (MapView) findViewById(R.id.mapView);  
 		mapView.setBuiltInZoomControls(true);
@@ -141,8 +143,6 @@ public class MiniMapActivity extends MapActivity {
 	}
 
 	public GeoPoint getUserLocation() {
-		LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-
 		if (isRealPhone()) {
 			if (userLocation != null) {
 				return userLocation;
@@ -226,7 +226,7 @@ public class MiniMapActivity extends MapActivity {
 
 			String inputLine;
 			String pipeDelimiter = "\\|";
-			int lat, lng;
+			long lat, lng;
 
 			inputLine = in.readLine();
 			while (inputLine != null) {
@@ -241,9 +241,9 @@ public class MiniMapActivity extends MapActivity {
 				if (tokens.length < 3) {
 					return list;
 				}
-				lat = Integer.parseInt(tokens[0]);
-				lng = Integer.parseInt(tokens[1]);
-				list.add(new GeoPoint(lat, lng));
+				lat = Long.parseLong(tokens[0]);
+				lng = Long.parseLong(tokens[1]);
+				list.add(new GeoPoint((int)lat, (int)lng));
 
 				inputLine = in.readLine();
 			}
@@ -303,14 +303,20 @@ public class MiniMapActivity extends MapActivity {
 	}
 
 	public boolean isRealPhone() {
+		System.out.println("AAAAisRealPhoneisRealPhoneisRealPhone");
 		// This is a shoddy hack of a way to tell whether or not this is running on an
 		//		emulator or not, but Android has no official way to do it. For production
 		// 		code, remove/comment out all the TelephonyManager stuff, the if statement,
 		// 		and the READ_PHONE_STATE permission in the Manifest
 		TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-		if (Integer.parseInt(tm.getDeviceId()) != 0) {
+		if (tm.getDeviceId() != null) {
+			System.out.println("still here true");
 			return true;
 		}
+//		if (Long.parseLong(tm.getDeviceId()) != 0) {
+//			return true;
+//		}
+		System.out.println("still here false");
 		return false;
 	}
 }
