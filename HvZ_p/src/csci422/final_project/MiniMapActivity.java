@@ -88,10 +88,28 @@ public class MiniMapActivity extends MapActivity {
 				startWithShootFlare();
 			}
 
-			final Button button = (Button) findViewById(R.id.flare);
-			button.setOnClickListener(new View.OnClickListener() {
+			final Button flareButton = (Button) findViewById(R.id.flare);
+			flareButton.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					shootFlare();
+				}
+			});
+			
+			final Button meButton = (Button) findViewById(R.id.me);
+			meButton.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					userLocation = getUserLocation();
+					if (userLocation != null) {
+						drawMapForUser(false);
+						Toast.makeText(getApplicationContext(), 
+								"You are the red dot. Be the red dot...", 
+								Toast.LENGTH_LONG).show();
+					}
+					else {
+						Toast.makeText(getApplicationContext(), 
+								"You'd better ask somebody, because I dont know.", 
+								Toast.LENGTH_LONG).show();
+					}
 				}
 			});
 
@@ -110,7 +128,7 @@ public class MiniMapActivity extends MapActivity {
 	public void onResume() {
 		super.onResume();
 		try {
-			drawMap(false);
+			drawAllOverlays(false);
 		}
 		catch (NullPointerException e) {
 			printErrorAndExit("onResume caught NullPointerExcepiton");
@@ -162,8 +180,15 @@ public class MiniMapActivity extends MapActivity {
 			return geoPointFromLocation(testLocation);
 		}
 	}
+	
+	public void drawMapForUser(boolean flare) {
+		userLocation = getUserLocation();
+		mapController.animateTo(userLocation);
+		mapController.setZoom(DEFAULT_ZOOM_LEVEL);
+		drawAllOverlays(flare);
+	}
 
-	public void drawMap(boolean flare) {
+	public void drawAllOverlays(boolean flare) {
 		userLocation = getUserLocation();
 
 		if (userLocation == null) {
@@ -175,8 +200,6 @@ public class MiniMapActivity extends MapActivity {
 		if (mapView == null) {
 			printErrorAndExit("5: NULL mapView in drawMap");
 		}
-
-		mapController.animateTo(userLocation);
 
 		List<Overlay> listOfOverlays = mapView.getOverlays();
 		listOfOverlays.clear();
@@ -392,7 +415,7 @@ public class MiniMapActivity extends MapActivity {
 		System.out.println("Placeholder flare");
 
 		boolean flare = true;
-		drawMap(flare);
+		drawMapForUser(flare);
 
 		Toast t = Toast.makeText(getApplicationContext(), "You have fired your flare gun!", Toast.LENGTH_LONG);
 		t.show();
@@ -406,7 +429,7 @@ public class MiniMapActivity extends MapActivity {
 			}
 
 			userLocation = geoPointFromLocation(loc);
-			drawMap(false);
+			drawAllOverlays(false);
 		}
 		catch (NullPointerException e) {
 			printErrorAndExit("updateUserLocation caught NullPointerExcepiton");
