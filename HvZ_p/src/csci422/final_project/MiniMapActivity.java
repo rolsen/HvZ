@@ -19,7 +19,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -91,44 +90,55 @@ public class MiniMapActivity extends MapActivity {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_LEFT_ICON);
-		setContentView(R.layout.mini_map);
-		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_hvz);
-		
-		locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-
-		mapView = (MapView) findViewById(R.id.mapView);  
-		mapView.setBuiltInZoomControls(true);
-		mapView.displayZoomControls(true);
-		mapView.setSatellite(true);
-
-		mapController = mapView.getController();
-		mapController.setZoom(DEFAULT_ZOOM_LEVEL);
-
-		Bundle b = getIntent().getExtras();
-		if ((b != null) && b.getBoolean("shootFlare")) {
-			startWithShootFlare();
-		}
-
-		final Button button = (Button) findViewById(R.id.flare);
-		button.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				shootFlare();
+		try {
+			super.onCreate(savedInstanceState);
+			requestWindowFeature(Window.FEATURE_LEFT_ICON);
+			setContentView(R.layout.mini_map);
+			setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_hvz);
+			
+			locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+	
+			mapView = (MapView) findViewById(R.id.mapView);  
+			mapView.setBuiltInZoomControls(true);
+			mapView.displayZoomControls(true);
+			mapView.setSatellite(true);
+	
+			mapController = mapView.getController();
+			mapController.setZoom(DEFAULT_ZOOM_LEVEL);
+	
+			Bundle b = getIntent().getExtras();
+			if ((b != null) && b.getBoolean("shootFlare")) {
+				startWithShootFlare();
 			}
-		});
-
-		if (isRealPhone()) {
-			initiateLocationListening();
+	
+			final Button button = (Button) findViewById(R.id.flare);
+			button.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					shootFlare();
+				}
+			});
+	
+			if (isRealPhone()) {
+				initiateLocationListening();
+			}
+	
+			System.out.println("MiniMapActivity has finished onCreate");
 		}
-
-		System.out.println("MiniMapActivity has finished onCreate");
+		catch (NullPointerException e) {
+			printErrorAndExit("onCreate caught NullPointerExcepiton");
+		}
 	}
 	
 	@Override
 	public void onResume() {
-		drawMap(false);
-		super.onResume();
+		try {
+			drawMap(false);
+			super.onResume();
+		}
+		catch (NullPointerException e) {
+			super.onResume();
+			printErrorAndExit("onResume caught NullPointerExcepiton");
+		}
 	}
 
 	@Override
@@ -138,7 +148,7 @@ public class MiniMapActivity extends MapActivity {
 
 	public GeoPoint geoPointFromLocation(Location l) {
 		if (l == null) {
-			System.out.println("Null location passed to geoPointFromLocation");		
+			printErrorAndExit("1: NULL l in geoPointFromLocation");
 		}
 		int lat = (int) (l.getLatitude() * 1e6);
 		int lng = (int) (l.getLongitude() * 1e6);
@@ -152,6 +162,10 @@ public class MiniMapActivity extends MapActivity {
 		if (isRealPhone()) {
 			if (userLocation != null) {
 				return userLocation;
+			}
+			
+			if (locationManager == null) {
+				printErrorAndExit("2: NULL locationManager in getUserLocation");
 			}
 
 			// NETWORK instead of GPS because I'm guessing GPS will take too long,
@@ -176,6 +190,16 @@ public class MiniMapActivity extends MapActivity {
 	public void drawMap(boolean flare) {
 		userLocation = getUserLocation();
 
+		if (userLocation == null) {
+			printErrorAndExit("3: NULL userLocation in drawMap");
+		}
+		if (mapController == null) {
+			printErrorAndExit("4: NULL mapController in drawMap");
+		}
+		if (mapView == null) {
+			printErrorAndExit("5: NULL mapView in drawMap");
+		}
+		
 		mapController.animateTo(userLocation);
 
 		List<GeoPoint> list = getFlareLocations();
@@ -205,6 +229,7 @@ public class MiniMapActivity extends MapActivity {
 				OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 				wr.write(params);
 				wr.flush();
+				wr.close();
 
 				// Get the response
 				BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -212,10 +237,9 @@ public class MiniMapActivity extends MapActivity {
 				while ((line = rd.readLine()) != null) {
 					System.out.printf("URL line: %s\n", line);
 				}
-				wr.close();
 				rd.close();
 			} catch (Exception e) {
-				System.out.printf("flareReport error\n");
+				System.out.printf("Error reaching server\n");
 			}
 			FlareOverlay mapOverlay = new FlareOverlay(userLocation);
 			listOfOverlays.add(mapOverlay);
@@ -240,6 +264,7 @@ public class MiniMapActivity extends MapActivity {
 
 			inputLine = in.readLine();
 			while (inputLine != null) {
+				inputLine = inputLine.toLowerCase();
 				if (inputLine.compareTo("<br/>") == 0 || inputLine.compareTo("<br />") == 0) {
 					inputLine = in.readLine();
 					continue;
@@ -251,6 +276,8 @@ public class MiniMapActivity extends MapActivity {
 				if (tokens.length < 3) {
 					return list;
 				}
+				
+				// TODO: maybe make these ints
 				lat = Long.parseLong(tokens[0]);
 				lng = Long.parseLong(tokens[1]);
 				list.add(new GeoPoint((int)lat, (int)lng));
@@ -285,11 +312,25 @@ public class MiniMapActivity extends MapActivity {
 	}
 
 	public void updateUserLocation(Location loc) {
-		userLocation = geoPointFromLocation(loc);
-		drawMap(false);
+		try {
+			System.out.println("updateUserLocation");
+			if (loc == null) {
+				printErrorAndExit("6: NULL loc in updateUserLocation");
+			}
+		
+			userLocation = geoPointFromLocation(loc);
+			drawMap(false);
+		}
+		catch (NullPointerException e) {
+			printErrorAndExit("updateUserLocation caught NullPointerExcepiton");
+		}
 	}
 
 	public void initiateLocationListening() {
+		if (locationManager == null) {
+			printErrorAndExit("7: NULL locationManager in initiateLocationListening");
+		}
+		
 		// Define a listener that responds to location updates
 		LocationListener locationListener = new LocationListener() {
 			public void onLocationChanged(Location location) {
@@ -303,10 +344,9 @@ public class MiniMapActivity extends MapActivity {
 			public void onProviderDisabled(String provider) {}
 		};
 
-		// TODO: The following two lines might need some optimizing
 		// Register the listener with the Location Manager to receive location updates
+		// TODO: The following line might need some optimizing
 		locationManager.requestLocationUpdates(GPS, UPDATE_MIN_TIME, UPDATE_MIN_DIST, locationListener);
-		//locationManager.requestLocationUpdates(NETWORK, UPDATE_MIN_TIME, UPDATE_MIN_DIST, locationListener);
 	}
 
 	public String getFlareReportURL() {
@@ -318,14 +358,22 @@ public class MiniMapActivity extends MapActivity {
 	}
 
 	public boolean isRealPhone() {
+		return true; // TODO: change this to true, eventually remove isRealPhone()
 		// This is a shoddy hack of a way to tell whether or not this is running on an
 		//		emulator or not, but Android has no official way to do it. For production
 		// 		code, remove/comment out all the TelephonyManager stuff, the if statement,
 		// 		and the READ_PHONE_STATE permission in the Manifest
-		TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-		if (Long.parseLong(tm.getDeviceId()) != 0) {
-			return true;
-		}
-		return false;
+//		TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+//		if (Long.parseLong(tm.getDeviceId()) != 0) {
+//			return true;
+//		}
+//		return false;
+	}
+	
+	public void printErrorAndExit(String s) {
+		System.out.println(s);
+		Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+		this.finish(); // Why u no work?
+		System.out.println("shouldnt get here");
 	}
 }

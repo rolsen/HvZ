@@ -46,8 +46,15 @@ public class HvZ_Activity extends Activity {
 		final Button miniMapButton = (Button) findViewById(R.id.mini_map);
 		miniMapButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent i = new Intent(HvZ_Activity.this, MiniMapActivity.class);
-				startActivity(i);
+				try {
+					Intent i = new Intent(HvZ_Activity.this, MiniMapActivity.class);
+					startActivity(i);
+				}
+				catch (NullPointerException e) {
+					String s = "HvZ caught NullPointerException from MiniMapActivity";
+					System.out.println(s);
+					Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+				}
 			}
 		});
 		
