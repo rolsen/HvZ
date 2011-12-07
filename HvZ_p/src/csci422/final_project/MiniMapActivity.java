@@ -28,14 +28,16 @@ import com.google.android.maps.Overlay;
 
 import csci422.final_project.map.FlareOverlay;
 import csci422.final_project.map.HumanOverlay;
+import csci422.final_project.map.YouOverlay;
 import csci422.final_project.map.ZombieOverlay;
+import csci422.final_project.profile.Profile;
 
 public class MiniMapActivity extends MapActivity {
 	MapView mapView;
 	MapController mapController;
 	LocationManager locationManager;
 	GeoPoint userLocation;
-	
+
 
 	private static final String NETWORK = LocationManager.NETWORK_PROVIDER;
 	private static final String GPS = LocationManager.GPS_PROVIDER;
@@ -55,6 +57,10 @@ public class MiniMapActivity extends MapActivity {
 	private static final String DEFAULT_SERVER_URL = "http://inside.mines.edu/~rolsen/";
 	private static final String REPORT_FLARE_ACTION = "cgi-bin/flareReport.cgi";
 	private static final String FLARE_LIST = "cgi-bin/flareList.cgi";
+	private static final String TRACKER_REPORT = "cgi-bin/trackerReport.cgi";
+	private static final String TRACKER_LIST = "cgi-bin/trackerList.cgi";
+
+	private static final String PIPE_DELIMITER = "\\|";
 
 	private static final String GENERAL_ERROR = "Something went wrong.";
 
@@ -66,43 +72,43 @@ public class MiniMapActivity extends MapActivity {
 			requestWindowFeature(Window.FEATURE_LEFT_ICON);
 			setContentView(R.layout.mini_map);
 			setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_hvz);
-			
+
 			locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-	
+
 			mapView = (MapView) findViewById(R.id.mapView);  
 			mapView.setBuiltInZoomControls(true);
 			mapView.displayZoomControls(true);
 			mapView.setSatellite(true);
-	
+
 			mapController = mapView.getController();
 			mapController.setZoom(DEFAULT_ZOOM_LEVEL);
-	
+
 			Bundle b = getIntent().getExtras();
 			if ((b != null) && b.getBoolean("shootFlare")) {
 				startWithShootFlare();
 			}
-	
+
 			final Button button = (Button) findViewById(R.id.flare);
 			button.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					shootFlare();
 				}
 			});
-	
+
 			if (isRealPhone()) {
 				initiateLocationListening();
 			}
-			
+
 			System.out.println("MiniMapActivity has finished onCreate");
 		}
 		catch (NullPointerException e) {
 			printErrorAndExit("onCreate caught NullPointerExcepiton");
 		}
 	}
-	
+
 	@Override
 	public void onResume() {
-			super.onResume();
+		super.onResume();
 		try {
 			drawMap(false);
 		}
@@ -133,7 +139,7 @@ public class MiniMapActivity extends MapActivity {
 			if (userLocation != null) {
 				return userLocation;
 			}
-			
+
 			if (locationManager == null) {
 				printErrorAndExit("2: NULL locationManager in getUserLocation");
 			}
@@ -142,7 +148,7 @@ public class MiniMapActivity extends MapActivity {
 			// 		especially if the user is inside.
 			userLocation = geoPointFromLocation(locationManager.getLastKnownLocation(NETWORK));
 			if (userLocation == null) {
-				
+
 			}
 			return userLocation;
 		}
@@ -169,22 +175,23 @@ public class MiniMapActivity extends MapActivity {
 		if (mapView == null) {
 			printErrorAndExit("5: NULL mapView in drawMap");
 		}
-		
+
 		mapController.animateTo(userLocation);
 
 		List<Overlay> listOfOverlays = mapView.getOverlays();
 		listOfOverlays.clear();
-		
+
+		listOfOverlays = addPlayers(listOfOverlays);
 		listOfOverlays = addFlares(listOfOverlays);
 
+		listOfOverlays = reportPlayer(listOfOverlays);
 		if (flare) {
 			listOfOverlays = reportFlare(listOfOverlays);
 		}
 
-		listOfOverlays = addPlayers(listOfOverlays);
 		mapView.invalidate(); // Calls onDraw()
 	}
-	
+
 	public List<Overlay> reportFlare(List<Overlay> listOfOverlays) {
 		String params = String.format("lat=%s&lng=%s",
 				userLocation.getLatitudeE6(), 
@@ -214,10 +221,46 @@ public class MiniMapActivity extends MapActivity {
 		}
 		FlareOverlay mapOverlay = new FlareOverlay(userLocation, this.getResources());
 		listOfOverlays.add(mapOverlay);
-		
+
 		return listOfOverlays;
 	}
 	
+	public List<Overlay> reportPlayer(List<Overlay> listOfOverlays) {
+//		Profile p = Profile.getInstance()
+//		p.getID()
+		String params = String.format("pid=%s&lat=%s&lng=%s",
+				Profile.getInstance(this.getApplicationContext()).getId(),
+				userLocation.getLatitudeE6(), 
+				userLocation.getLongitudeE6());
+		System.out.printf("req: %s\n", params);
+		try {
+			// Send data
+			URL url = new URL(getPlayerReportURL());
+			URLConnection conn = url.openConnection();
+			conn.setDoOutput(true);
+			conn.setUseCaches(false);
+			conn.setRequestProperty("content-type", "application/x-www-form-urlencoded");
+			OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+			wr.write(params);
+			wr.flush();
+			wr.close();
+
+			// Get the response
+			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String line;
+			while ((line = rd.readLine()) != null) {
+				System.out.printf("URL line: %s\n", line);
+			}
+			rd.close();
+		} catch (Exception e) {
+			System.out.printf("Error reaching server\n");
+		}
+		YouOverlay mapOverlay = new YouOverlay(userLocation, this.getResources());
+		listOfOverlays.add(mapOverlay);
+
+		return listOfOverlays;
+	}
+
 	public List<Overlay> addFlares(List<Overlay> listOfOverlays) {
 		List<GeoPoint> list = getFlareLocations();
 
@@ -226,23 +269,63 @@ public class MiniMapActivity extends MapActivity {
 				FlareOverlay mapOverlay = new FlareOverlay(point, this.getResources());
 				listOfOverlays.add(mapOverlay);
 			}
-			System.out.println("list is not null");
 		}
-		
+
 		return listOfOverlays;
 	}
-	
+
 	public List<Overlay> addPlayers(List<Overlay> listOfOverlays) {
-		System.out.println("zombeh!");
-		GeoPoint p = new GeoPoint(CH_MICRO_LAT, CH_MICRO_LNG);
-		ZombieOverlay z = new ZombieOverlay(p, this.getResources());
-		listOfOverlays.add(z);
-		
-		p = new GeoPoint(CH_MICRO_LAT+500, CH_MICRO_LNG+500);
-		HumanOverlay h = new HumanOverlay(p, this.getResources());
-		listOfOverlays.add(h);
-		System.out.println("zombend!");
-		
+		try {
+			URL playerListURL = new URL(getPlayerListURL());
+
+			BufferedReader in = new BufferedReader(
+					new InputStreamReader(playerListURL.openStream()));
+
+			String inputLine;
+			long lat, lng;
+			GeoPoint g;
+			ZombieOverlay z;
+			HumanOverlay h;
+			String[] tokens;
+
+			inputLine = in.readLine();
+			while (inputLine != null) {
+				inputLine = inputLine.toLowerCase();
+				if (inputLine.compareTo("<br/>") == 0 || inputLine.compareTo("<br />") == 0) {
+					inputLine = in.readLine();
+					continue;
+				}
+
+				System.out.printf("LINE: %s\n", inputLine);
+				tokens  = inputLine.split(PIPE_DELIMITER);
+
+				if (tokens.length < 5) {
+					break;
+				}
+				
+				// TODO: maybe make these ints
+				lat = Long.parseLong(tokens[2]);
+				lng = Long.parseLong(tokens[3]);
+				g = new GeoPoint((int)lat, (int)lng);
+
+				if (tokens[1].equalsIgnoreCase("H")) {
+					h = new HumanOverlay(g, this.getResources());
+					listOfOverlays.add(h);
+				}
+				else if (tokens[1].equalsIgnoreCase("Z")) {
+					z = new ZombieOverlay(g, this.getResources());
+					listOfOverlays.add(z);
+				}
+				inputLine = in.readLine();
+			}
+
+			in.close();
+		} catch (MalformedURLException e) {
+			Toast.makeText(getApplicationContext(), GENERAL_ERROR, Toast.LENGTH_LONG).show();
+		} catch (IOException e) {
+			Toast.makeText(getApplicationContext(), GENERAL_ERROR, Toast.LENGTH_LONG).show();
+		}
+
 		return listOfOverlays;
 	}
 
@@ -257,8 +340,8 @@ public class MiniMapActivity extends MapActivity {
 					new InputStreamReader(flareListURL.openStream()));
 
 			String inputLine;
-			String pipeDelimiter = "\\|";
 			long lat, lng;
+			String[] tokens;
 
 			inputLine = in.readLine();
 			while (inputLine != null) {
@@ -268,13 +351,13 @@ public class MiniMapActivity extends MapActivity {
 					continue;
 				}
 
-				System.out.printf("LINEE: %s\n", inputLine);
-				String[] tokens  = inputLine.split(pipeDelimiter);
+				System.out.printf("LINE: %s\n", inputLine);
+				tokens  = inputLine.split(PIPE_DELIMITER);
 
 				if (tokens.length < 3) {
 					return list;
 				}
-				
+
 				// TODO: maybe make these ints
 				lat = Long.parseLong(tokens[0]);
 				lng = Long.parseLong(tokens[1]);
@@ -292,7 +375,13 @@ public class MiniMapActivity extends MapActivity {
 
 		return list;
 	}
-	
+
+	// May return a null List
+	//	public List<GeoPoint> getPlayerLocations() {
+	//
+	//		return list;
+	//	}
+
 	public void startWithShootFlare() {
 		System.out.println("starting map with flare");
 		shootFlare();
@@ -315,7 +404,7 @@ public class MiniMapActivity extends MapActivity {
 			if (loc == null) {
 				printErrorAndExit("6: NULL loc in updateUserLocation");
 			}
-		
+
 			userLocation = geoPointFromLocation(loc);
 			drawMap(false);
 		}
@@ -328,7 +417,7 @@ public class MiniMapActivity extends MapActivity {
 		if (locationManager == null) {
 			printErrorAndExit("7: NULL locationManager in initiateLocationListening");
 		}
-		
+
 		// Define a listener that responds to location updates
 		LocationListener locationListener = new LocationListener() {
 			public void onLocationChanged(Location location) {
@@ -355,19 +444,27 @@ public class MiniMapActivity extends MapActivity {
 		return DEFAULT_SERVER_URL + FLARE_LIST;
 	}
 
+	public String getPlayerReportURL() {
+		return DEFAULT_SERVER_URL + TRACKER_REPORT;
+	}
+
+	public String getPlayerListURL() {
+		return DEFAULT_SERVER_URL + TRACKER_LIST;
+	}
+
 	public boolean isRealPhone() {
-		return false; // TODO: change this to true, eventually remove isRealPhone()
+		return true; // TODO: change this to true, eventually remove isRealPhone()
 		// This is a shoddy hack of a way to tell whether or not this is running on an
 		//		emulator or not, but Android has no official way to do it. For production
 		// 		code, remove/comment out all the TelephonyManager stuff, the if statement,
 		// 		and the READ_PHONE_STATE permission in the Manifest
-//		TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-//		if (Long.parseLong(tm.getDeviceId()) != 0) {
-//			return true;
-//		}
-//		return false;
+		//		TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+		//		if (Long.parseLong(tm.getDeviceId()) != 0) {
+		//			return true;
+		//		}
+		//		return false;
 	}
-	
+
 	public void printErrorAndExit(String s) {
 		System.out.println(s);
 		Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
