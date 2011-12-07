@@ -38,7 +38,6 @@ public class MiniMapActivity extends MapActivity {
 	LocationManager locationManager;
 	GeoPoint userLocation;
 
-
 	private static final String NETWORK = LocationManager.NETWORK_PROVIDER;
 	private static final String GPS = LocationManager.GPS_PROVIDER;
 	private static final int UPDATE_MIN_TIME = 60000;
@@ -77,7 +76,6 @@ public class MiniMapActivity extends MapActivity {
 
 			mapView = (MapView) findViewById(R.id.mapView);  
 			mapView.setBuiltInZoomControls(true);
-			//mapView.displayZoomControls(true);
 			mapView.setSatellite(true);
 
 			mapController = mapView.getController();
@@ -148,7 +146,6 @@ public class MiniMapActivity extends MapActivity {
 		int lng = (int) (l.getLongitude() * 1e6);
 		GeoPoint gp = new GeoPoint(lat, lng);
 
-		// System.out.println(String.format("The lat: was %f now %d, the lng: was %f now %d", l.getLatitude(), lat, l.getLongitude(), lng));
 		return gp;
 	}
 
@@ -249,8 +246,6 @@ public class MiniMapActivity extends MapActivity {
 	}
 	
 	public List<Overlay> reportPlayer(List<Overlay> listOfOverlays) {
-//		Profile p = Profile.getInstance()
-//		p.getID()
 		String params = String.format("pid=%s&lat=%s&lng=%s",
 				Profile.getInstance(this.getApplicationContext()).getId(),
 				userLocation.getLatitudeE6(), 
@@ -398,12 +393,6 @@ public class MiniMapActivity extends MapActivity {
 
 		return list;
 	}
-
-	// May return a null List
-	//	public List<GeoPoint> getPlayerLocations() {
-	//
-	//		return list;
-	//	}
 
 	public void startWithShootFlare() {
 		System.out.println("starting map with flare");
