@@ -6,10 +6,10 @@ import com.google.android.maps.GeoPoint;
 
 import csci422.final_project.R;
 
-public class FlareOverlay extends HvZOverlay
-{
-	public FlareOverlay(GeoPoint gp, Resources r) {
+public class HumanOverlay extends HvZOverlay {
+
+	public HumanOverlay(GeoPoint gp, Resources r) {
 		super(gp, r);
-		super.id = R.drawable.flare_t;
+		super.id = R.drawable.human;
 	}
 }

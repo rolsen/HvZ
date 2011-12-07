@@ -64,8 +64,14 @@ if __name__ == "__main__":
     dateAndTime = time.strftime("%y:%m:%d:%H:%M:%S")
 
     playerCode = qString["pid"].value
+    playerStatus = getStatus(playerCode)
+    if playerStatus != "H" and playerStatus != "Z":
+        file.close()
+        print "That player is dead"
+        sys.exit()
+
     trackerBasedOnArgs = playerCode + PIPE + \
-        getStatus(playerCode) + PIPE + \
+        playerStatus + PIPE + \
         qString["lat"].value + PIPE + \
         qString["lng"].value + PIPE + \
         dateAndTime

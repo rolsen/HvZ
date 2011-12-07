@@ -1,8 +1,5 @@
 package csci422.final_project;
 
-import csci422.final_project.R;
-import csci422.final_project.map.FlareOverlay;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -28,6 +25,10 @@ import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
+
+import csci422.final_project.map.FlareOverlay;
+import csci422.final_project.map.HumanOverlay;
+import csci422.final_project.map.ZombieOverlay;
 
 public class MiniMapActivity extends MapActivity {
 	MapView mapView;
@@ -91,7 +92,7 @@ public class MiniMapActivity extends MapActivity {
 			if (isRealPhone()) {
 				initiateLocationListening();
 			}
-	
+			
 			System.out.println("MiniMapActivity has finished onCreate");
 		}
 		catch (NullPointerException e) {
@@ -171,9 +172,54 @@ public class MiniMapActivity extends MapActivity {
 		
 		mapController.animateTo(userLocation);
 
-		List<GeoPoint> list = getFlareLocations();
 		List<Overlay> listOfOverlays = mapView.getOverlays();
 		listOfOverlays.clear();
+		
+		listOfOverlays = addFlares(listOfOverlays);
+
+		if (flare) {
+			listOfOverlays = reportFlare(listOfOverlays);
+		}
+
+		listOfOverlays = addPlayers(listOfOverlays);
+		mapView.invalidate(); // Calls onDraw()
+	}
+	
+	public List<Overlay> reportFlare(List<Overlay> listOfOverlays) {
+		String params = String.format("lat=%s&lng=%s",
+				userLocation.getLatitudeE6(), 
+				userLocation.getLongitudeE6());
+		System.out.printf("req: %s\n", params);
+		try {
+			// Send data
+			URL url = new URL(getFlareReportURL());
+			URLConnection conn = url.openConnection();
+			conn.setDoOutput(true);
+			conn.setUseCaches(false);
+			conn.setRequestProperty("content-type", "application/x-www-form-urlencoded");
+			OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+			wr.write(params);
+			wr.flush();
+			wr.close();
+
+			// Get the response
+			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String line;
+			while ((line = rd.readLine()) != null) {
+				System.out.printf("URL line: %s\n", line);
+			}
+			rd.close();
+		} catch (Exception e) {
+			System.out.printf("Error reaching server\n");
+		}
+		FlareOverlay mapOverlay = new FlareOverlay(userLocation, this.getResources());
+		listOfOverlays.add(mapOverlay);
+		
+		return listOfOverlays;
+	}
+	
+	public List<Overlay> addFlares(List<Overlay> listOfOverlays) {
+		List<GeoPoint> list = getFlareLocations();
 
 		if (list != null) {
 			for (GeoPoint point : list) {
@@ -182,39 +228,22 @@ public class MiniMapActivity extends MapActivity {
 			}
 			System.out.println("list is not null");
 		}
-
-		if (flare) {
-			String params = String.format("lat=%s&lng=%s",
-					userLocation.getLatitudeE6(), 
-					userLocation.getLongitudeE6());
-			System.out.printf("req: %s\n", params);
-			try {
-				// Send data
-				URL url = new URL(getFlareReportURL());
-				URLConnection conn = url.openConnection();
-				conn.setDoOutput(true);
-				conn.setUseCaches(false);
-				conn.setRequestProperty("content-type", "application/x-www-form-urlencoded");
-				OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-				wr.write(params);
-				wr.flush();
-				wr.close();
-
-				// Get the response
-				BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-				String line;
-				while ((line = rd.readLine()) != null) {
-					System.out.printf("URL line: %s\n", line);
-				}
-				rd.close();
-			} catch (Exception e) {
-				System.out.printf("Error reaching server\n");
-			}
-			FlareOverlay mapOverlay = new FlareOverlay(userLocation, this.getResources());
-			listOfOverlays.add(mapOverlay);
-		}
-
-		mapView.invalidate(); // Calls onDraw()
+		
+		return listOfOverlays;
+	}
+	
+	public List<Overlay> addPlayers(List<Overlay> listOfOverlays) {
+		System.out.println("zombeh!");
+		GeoPoint p = new GeoPoint(CH_MICRO_LAT, CH_MICRO_LNG);
+		ZombieOverlay z = new ZombieOverlay(p, this.getResources());
+		listOfOverlays.add(z);
+		
+		p = new GeoPoint(CH_MICRO_LAT+500, CH_MICRO_LNG+500);
+		HumanOverlay h = new HumanOverlay(p, this.getResources());
+		listOfOverlays.add(h);
+		System.out.println("zombend!");
+		
+		return listOfOverlays;
 	}
 
 	// May return a null List
@@ -327,7 +356,7 @@ public class MiniMapActivity extends MapActivity {
 	}
 
 	public boolean isRealPhone() {
-		return true; // TODO: change this to true, eventually remove isRealPhone()
+		return false; // TODO: change this to true, eventually remove isRealPhone()
 		// This is a shoddy hack of a way to tell whether or not this is running on an
 		//		emulator or not, but Android has no official way to do it. For production
 		// 		code, remove/comment out all the TelephonyManager stuff, the if statement,
