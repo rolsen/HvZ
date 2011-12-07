@@ -1,5 +1,8 @@
 package csci422.final_project;
 
+import csci422.final_project.R;
+import csci422.final_project.map.FlareOverlay;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,10 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Point;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -35,6 +34,7 @@ public class MiniMapActivity extends MapActivity {
 	MapController mapController;
 	LocationManager locationManager;
 	GeoPoint userLocation;
+	
 
 	private static final String NETWORK = LocationManager.NETWORK_PROVIDER;
 	private static final String GPS = LocationManager.GPS_PROVIDER;
@@ -57,41 +57,11 @@ public class MiniMapActivity extends MapActivity {
 
 	private static final String GENERAL_ERROR = "Something went wrong.";
 
-	class FlareOverlay extends com.google.android.maps.Overlay
-	{
-		GeoPoint point;
-
-		public FlareOverlay(GeoPoint gp) {
-			point = gp;
-		}
-
-		public boolean draw(Canvas canvas, MapView mapView, 
-				boolean shadow, long when)
-		{
-			if (point == null) {
-				System.out.println("Error in draw flare, GeoPoint is null");
-				return false;
-			}
-
-			super.draw(canvas, mapView, shadow);
-
-			// Translate the GeoPoint to screen pixels
-			Point screenPts = new Point();
-			mapView.getProjection().toPixels(point, screenPts);
-
-			// Add the flare
-			Bitmap bmp = BitmapFactory.decodeResource(
-					getResources(), R.drawable.flare_t);
-			canvas.drawBitmap(bmp, screenPts.x, screenPts.y, null);
-			return true;
-		}
-	}
-
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		try {
-			super.onCreate(savedInstanceState);
 			requestWindowFeature(Window.FEATURE_LEFT_ICON);
 			setContentView(R.layout.mini_map);
 			setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_hvz);
@@ -131,12 +101,11 @@ public class MiniMapActivity extends MapActivity {
 	
 	@Override
 	public void onResume() {
+			super.onResume();
 		try {
 			drawMap(false);
-			super.onResume();
 		}
 		catch (NullPointerException e) {
-			super.onResume();
 			printErrorAndExit("onResume caught NullPointerExcepiton");
 		}
 	}
@@ -208,7 +177,7 @@ public class MiniMapActivity extends MapActivity {
 
 		if (list != null) {
 			for (GeoPoint point : list) {
-				FlareOverlay mapOverlay = new FlareOverlay(point);
+				FlareOverlay mapOverlay = new FlareOverlay(point, this.getResources());
 				listOfOverlays.add(mapOverlay);
 			}
 			System.out.println("list is not null");
@@ -241,7 +210,7 @@ public class MiniMapActivity extends MapActivity {
 			} catch (Exception e) {
 				System.out.printf("Error reaching server\n");
 			}
-			FlareOverlay mapOverlay = new FlareOverlay(userLocation);
+			FlareOverlay mapOverlay = new FlareOverlay(userLocation, this.getResources());
 			listOfOverlays.add(mapOverlay);
 		}
 
