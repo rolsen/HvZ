@@ -1,0 +1,4 @@
+$ keytool -list -alias hvz -keystore hvz.keystore
+Enter keystore password:  pandaroll
+hvz, Nov 22, 2011, keyEntry,
+Certificate fingerprint (MD5): C4:DA:A9:9C:91:72:02:7A:06:09:EA:4D:A8:BE:E2:DD

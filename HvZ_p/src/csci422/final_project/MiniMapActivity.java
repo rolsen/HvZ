@@ -42,7 +42,7 @@ public class MiniMapActivity extends MapActivity {
 	private static final int UPDATE_MIN_TIME = 60000;
 	private static final int UPDATE_MIN_DIST = 10;
 
-	int DEFAULT_ZOOM_LEVEL = 18;
+	int DEFAULT_ZOOM_LEVEL = 17;
 	int KAFADAR_MICRO_LAT = 39751265;
 	int KAFADAR_MICRO_LNG = -105221450;
 	int CH_MICRO_LAT = 39751702;
@@ -108,10 +108,7 @@ public class MiniMapActivity extends MapActivity {
 
 		Bundle b = getIntent().getExtras();
 		if ((b != null) && b.getBoolean("shootFlare")) {
-			shootFlare();
-		}
-		else {
-			drawMap(false);
+			startWithShootFlare();
 		}
 
 		final Button button = (Button) findViewById(R.id.flare);
@@ -127,6 +124,12 @@ public class MiniMapActivity extends MapActivity {
 
 		System.out.println("MiniMapActivity has finished onCreate");
 	}
+	
+	@Override
+	public void onResume() {
+		drawMap(false);
+		super.onResume();
+	}
 
 	@Override
 	protected boolean isRouteDisplayed() {
@@ -134,6 +137,9 @@ public class MiniMapActivity extends MapActivity {
 	}
 
 	public GeoPoint geoPointFromLocation(Location l) {
+		if (l == null) {
+			System.out.println("Null location passed to geoPointFromLocation");		
+		}
 		int lat = (int) (l.getLatitude() * 1e6);
 		int lng = (int) (l.getLongitude() * 1e6);
 		GeoPoint gp = new GeoPoint(lat, lng);
@@ -150,7 +156,11 @@ public class MiniMapActivity extends MapActivity {
 
 			// NETWORK instead of GPS because I'm guessing GPS will take too long,
 			// 		especially if the user is inside.
-			return geoPointFromLocation(locationManager.getLastKnownLocation(NETWORK));
+			userLocation = geoPointFromLocation(locationManager.getLastKnownLocation(NETWORK));
+			if (userLocation == null) {
+				
+			}
+			return userLocation;
 		}
 		else {
 			System.out.println("getUserLocation detects emulator instead of real device");
@@ -257,6 +267,11 @@ public class MiniMapActivity extends MapActivity {
 
 		return list;
 	}
+	
+	public void startWithShootFlare() {
+		System.out.println("starting map with flare");
+		shootFlare();
+	}
 
 	public void shootFlare() {
 		// TODO: send Flare data to server, update screen
@@ -291,7 +306,7 @@ public class MiniMapActivity extends MapActivity {
 		// TODO: The following two lines might need some optimizing
 		// Register the listener with the Location Manager to receive location updates
 		locationManager.requestLocationUpdates(GPS, UPDATE_MIN_TIME, UPDATE_MIN_DIST, locationListener);
-		locationManager.requestLocationUpdates(NETWORK, UPDATE_MIN_TIME, UPDATE_MIN_DIST, locationListener);
+		//locationManager.requestLocationUpdates(NETWORK, UPDATE_MIN_TIME, UPDATE_MIN_DIST, locationListener);
 	}
 
 	public String getFlareReportURL() {
@@ -303,20 +318,14 @@ public class MiniMapActivity extends MapActivity {
 	}
 
 	public boolean isRealPhone() {
-		System.out.println("AAAAisRealPhoneisRealPhoneisRealPhone");
 		// This is a shoddy hack of a way to tell whether or not this is running on an
 		//		emulator or not, but Android has no official way to do it. For production
 		// 		code, remove/comment out all the TelephonyManager stuff, the if statement,
 		// 		and the READ_PHONE_STATE permission in the Manifest
 		TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-		if (tm.getDeviceId() != null) {
-			System.out.println("still here true");
+		if (Long.parseLong(tm.getDeviceId()) != 0) {
 			return true;
 		}
-//		if (Long.parseLong(tm.getDeviceId()) != 0) {
-//			return true;
-//		}
-		System.out.println("still here false");
 		return false;
 	}
 }
