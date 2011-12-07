@@ -300,7 +300,7 @@ public class MiniMapActivity extends MapActivity {
 					new InputStreamReader(playerListURL.openStream()));
 
 			String inputLine;
-			long lat, lng;
+			int lat, lng;
 			GeoPoint g;
 			ZombieOverlay z;
 			HumanOverlay h;
@@ -322,9 +322,9 @@ public class MiniMapActivity extends MapActivity {
 				}
 				
 				// TODO: maybe make these ints
-				lat = Long.parseLong(tokens[2]);
-				lng = Long.parseLong(tokens[3]);
-				g = new GeoPoint((int)lat, (int)lng);
+				lat = Integer.parseInt(tokens[2]);
+				lng = Integer.parseInt(tokens[3]);
+				g = new GeoPoint(lat, lng);
 
 				if (tokens[1].equalsIgnoreCase("H")) {
 					h = new HumanOverlay(g, this.getResources());
@@ -358,7 +358,7 @@ public class MiniMapActivity extends MapActivity {
 					new InputStreamReader(flareListURL.openStream()));
 
 			String inputLine;
-			long lat, lng;
+			int lat, lng;
 			String[] tokens;
 
 			inputLine = in.readLine();
@@ -377,9 +377,9 @@ public class MiniMapActivity extends MapActivity {
 				}
 
 				// TODO: maybe make these ints
-				lat = Long.parseLong(tokens[0]);
-				lng = Long.parseLong(tokens[1]);
-				list.add(new GeoPoint((int)lat, (int)lng));
+				lat = Integer.parseInt(tokens[0]);
+				lng = Integer.parseInt(tokens[1]);
+				list.add(new GeoPoint(lat, lng));
 
 				inputLine = in.readLine();
 			}
