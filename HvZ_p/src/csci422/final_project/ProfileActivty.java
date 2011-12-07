@@ -44,6 +44,7 @@ public class ProfileActivty extends Activity {
 				if (profile.validId()) {
 					profile.saveId(getApplicationContext());
 					Toast.makeText(getApplicationContext(), SAVED, Toast.LENGTH_LONG).show();
+					backToMainMenu();
 				}
 				else {
 					Toast.makeText(getApplicationContext(), WARNING, Toast.LENGTH_LONG).show();
@@ -51,7 +52,10 @@ public class ProfileActivty extends Activity {
 				}
 			}
 		});
-		
+	}
+
+	public void backToMainMenu() {
+		this.finish();
 	}
 
 }
