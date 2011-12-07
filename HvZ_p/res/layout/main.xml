@@ -1,56 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo" />		
+    android:isScrollContainer="true"
+    android:scrollbars="vertical" >
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/logo" />
 
-        <Button
-            android:id="@+id/player_list"
+        <LinearLayout
+            android:id="@+id/linearLayout1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Player List" />
+            android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/report_kill"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Report A Kill" />
+            <Button
+                android:id="@+id/player_list"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Player List" />
 
-        <Button
-            android:id="@+id/mini_map"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="View Mini Map" />
+            <Button
+                android:id="@+id/report_kill"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Report A Kill" />
 
-        <Button
-            android:id="@+id/shoot_flare"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Shoot Flare Gun" />
+            <Button
+                android:id="@+id/mini_map"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="View Mini Map" />
 
-        <!--<Button
+            <Button
+                android:id="@+id/shoot_flare"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Shoot Flare Gun" />
+
+            <!--
+            <Button
             android:id="@+id/strategy_map"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Strategy Map" /> -->
-            
-        <Button
-            android:id="@+id/profile"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Profile" />
+            android:text="Strategy Map" />
+            -->
+
+            <Button
+                android:id="@+id/profile"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Profile" />
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>
