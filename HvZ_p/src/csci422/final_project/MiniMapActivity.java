@@ -42,7 +42,7 @@ public class MiniMapActivity extends MapActivity {
 	private static final String NETWORK = LocationManager.NETWORK_PROVIDER;
 	private static final String GPS = LocationManager.GPS_PROVIDER;
 	private static final int UPDATE_MIN_TIME = 60000;
-	private static final int UPDATE_MIN_DIST = 10;
+	private static final int UPDATE_MIN_DIST = 0;
 
 	int DEFAULT_ZOOM_LEVEL = 17;
 	int KAFADAR_MICRO_LAT = 39751265;
@@ -77,7 +77,7 @@ public class MiniMapActivity extends MapActivity {
 
 			mapView = (MapView) findViewById(R.id.mapView);  
 			mapView.setBuiltInZoomControls(true);
-			mapView.displayZoomControls(true);
+			//mapView.displayZoomControls(true);
 			mapView.setSatellite(true);
 
 			mapController = mapView.getController();
