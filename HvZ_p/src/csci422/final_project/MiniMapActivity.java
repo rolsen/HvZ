@@ -46,6 +46,7 @@ public class MiniMapActivity extends MapActivity {
 	MapView mapView;
 	MapController mapController;
 	LocationManager locationManager;
+	LocationListener locationListener;
 	GeoPoint userLocation;
 
 	private static final String NETWORK = LocationManager.NETWORK_PROVIDER;
@@ -140,6 +141,14 @@ public class MiniMapActivity extends MapActivity {
 		}
 		catch (NullPointerException e) {
 			System.out.println("onResume caught NullPointerExcepiton");
+		}
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		if (locationManager != null && locationListener != null) {
+			locationManager.removeUpdates(locationListener);
 		}
 	}
 
@@ -441,7 +450,7 @@ public class MiniMapActivity extends MapActivity {
 		}
 
 		// Define a listener that responds to location updates
-		LocationListener locationListener = new LocationListener() {
+		locationListener = new LocationListener() {
 			public void onLocationChanged(Location location) {
 				updateUserLocation(location);
 			}
