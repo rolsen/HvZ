@@ -475,16 +475,7 @@ public class MiniMapActivity extends MapActivity {
 	}
 
 	public boolean isRealPhone() {
-		return PHONE; // TODO: change this to true, eventually remove isRealPhone()
-		// This is a shoddy hack of a way to tell whether or not this is running on an
-		//		emulator or not, but Android has no official way to do it. For production
-		// 		code, remove/comment out all the TelephonyManager stuff, the if statement,
-		// 		and the READ_PHONE_STATE permission in the Manifest
-		//		TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-		//		if (Long.parseLong(tm.getDeviceId()) != 0) {
-		//			return true;
-		//		}
-		//		return false;
+		return PHONE;
 	}
 
 	public void printErrorAndExit(String s) {
