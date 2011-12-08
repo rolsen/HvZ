@@ -111,6 +111,9 @@ public class ReportActivity extends Activity {
 						if (toasts.containsKey(inputLine)) {
 							String message = toasts.get(inputLine);
 							Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+							if (message.equals(CONFIRMED)) {
+								backToMainMenu();
+							}
 							break;
 						}
 					}
@@ -133,5 +136,9 @@ public class ReportActivity extends Activity {
 	        cacheDirPath = cacheDir.getPath();
 	    }
 	    return cacheDirPath;        
+	}
+
+	public void backToMainMenu() {
+		this.finish();
 	}
 }
