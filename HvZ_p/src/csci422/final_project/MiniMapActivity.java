@@ -33,6 +33,16 @@ import csci422.final_project.map.ZombieOverlay;
 import csci422.final_project.profile.Profile;
 
 public class MiniMapActivity extends MapActivity {
+	/* PHONE determines whether you are compiling for an emulator or
+	 *  an Android-powered device. See the README
+	 */
+
+	/* Uncomment this for an Android-powered device: */
+	private static final boolean PHONE = true;
+
+	/* Uncomment this for emulator: */
+	//private static final boolean PHONE = false;
+
 	MapView mapView;
 	MapController mapController;
 	LocationManager locationManager;
@@ -465,7 +475,7 @@ public class MiniMapActivity extends MapActivity {
 	}
 
 	public boolean isRealPhone() {
-		return true; // TODO: change this to true, eventually remove isRealPhone()
+		return PHONE; // TODO: change this to true, eventually remove isRealPhone()
 		// This is a shoddy hack of a way to tell whether or not this is running on an
 		//		emulator or not, but Android has no official way to do it. For production
 		// 		code, remove/comment out all the TelephonyManager stuff, the if statement,
