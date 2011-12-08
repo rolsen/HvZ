@@ -71,7 +71,7 @@ public class MiniMapActivity extends MapActivity {
 
 	private static final String PIPE_DELIMITER = "\\|";
 
-	private static final String GENERAL_ERROR = "Something went wrong.";
+	private static final String GENERAL_ERROR = "Something went wrong. Please try it again.";
 
 	/** Called when the activity is first created. */
 	@Override
@@ -128,7 +128,7 @@ public class MiniMapActivity extends MapActivity {
 			System.out.println("MiniMapActivity has finished onCreate");
 		}
 		catch (NullPointerException e) {
-			printErrorAndExit("onCreate caught NullPointerExcepiton");
+			System.out.println("onCreate caught NullPointerExcepiton");
 		}
 	}
 
@@ -139,7 +139,7 @@ public class MiniMapActivity extends MapActivity {
 			drawAllOverlays(false);
 		}
 		catch (NullPointerException e) {
-			printErrorAndExit("onResume caught NullPointerExcepiton");
+			System.out.println("onResume caught NullPointerExcepiton");
 		}
 	}
 
@@ -431,7 +431,7 @@ public class MiniMapActivity extends MapActivity {
 			drawAllOverlays(false);
 		}
 		catch (NullPointerException e) {
-			printErrorAndExit("updateUserLocation caught NullPointerExcepiton");
+			System.out.println("updateUserLocation caught NullPointerExcepiton");
 		}
 	}
 
@@ -489,7 +489,7 @@ public class MiniMapActivity extends MapActivity {
 
 	public void printErrorAndExit(String s) {
 		System.out.println(s);
-		Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), GENERAL_ERROR, Toast.LENGTH_LONG).show();
 		this.finish(); // Why u no work?
 		System.out.println("shouldnt get here");
 	}
