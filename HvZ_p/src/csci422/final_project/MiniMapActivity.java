@@ -202,12 +202,12 @@ public class MiniMapActivity extends MapActivity {
 		listOfOverlays.clear();
 
 		listOfOverlays = addPlayers(listOfOverlays);
-		listOfOverlays = addFlares(listOfOverlays);
 
 		listOfOverlays = reportPlayer(listOfOverlays);
 		if (flare) {
 			listOfOverlays = reportFlare(listOfOverlays);
 		}
+		listOfOverlays = addFlares(listOfOverlays);
 
 		mapView.invalidate(); // Calls onDraw()
 	}
