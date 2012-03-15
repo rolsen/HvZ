@@ -7,6 +7,8 @@ VAL_SPLITTER = '|'
 DEAD_STATUS = "D"
 HUMAN_STATUS = "H"
 ZOMBIE_STATUS = "Z"
+EXEMPT_STATUS = "X"
+
 
 FILE = "PlayerData.txt"
 
@@ -33,6 +35,8 @@ def cleanLine(line):
     status = vals[2]
     if status == HUMAN_STATUS:
         date = "N/A"
+	elif status == EXEMPT_STATUS:
+	    date = "N/A"
     else:
         date = getDate(vals[3])
     kills = vals[4]

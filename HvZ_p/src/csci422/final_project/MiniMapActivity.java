@@ -33,9 +33,20 @@ import csci422.final_project.map.ZombieOverlay;
 import csci422.final_project.profile.Profile;
 
 public class MiniMapActivity extends MapActivity {
+	/* PHONE determines whether you are compiling for an emulator or
+	 *  an Android-powered device. See the README
+	 */
+
+	/* Uncomment this for an Android-powered device: */
+	private static final boolean PHONE = true;
+
+	/* Uncomment this for emulator: */
+	//private static final boolean PHONE = false;
+
 	MapView mapView;
 	MapController mapController;
 	LocationManager locationManager;
+	LocationListener locationListener;
 	GeoPoint userLocation;
 
 	private static final String NETWORK = LocationManager.NETWORK_PROVIDER;
@@ -61,7 +72,7 @@ public class MiniMapActivity extends MapActivity {
 
 	private static final String PIPE_DELIMITER = "\\|";
 
-	private static final String GENERAL_ERROR = "Something went wrong.";
+	private static final String GENERAL_ERROR = "Something went wrong. Please try it again.";
 
 	/** Called when the activity is first created. */
 	@Override
@@ -118,7 +129,7 @@ public class MiniMapActivity extends MapActivity {
 			System.out.println("MiniMapActivity has finished onCreate");
 		}
 		catch (NullPointerException e) {
-			printErrorAndExit("onCreate caught NullPointerExcepiton");
+			System.out.println("onCreate caught NullPointerExcepiton");
 		}
 	}
 
@@ -129,7 +140,15 @@ public class MiniMapActivity extends MapActivity {
 			drawAllOverlays(false);
 		}
 		catch (NullPointerException e) {
-			printErrorAndExit("onResume caught NullPointerExcepiton");
+			System.out.println("onResume caught NullPointerExcepiton");
+		}
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		if (locationManager != null && locationListener != null) {
+			locationManager.removeUpdates(locationListener);
 		}
 	}
 
@@ -202,12 +221,12 @@ public class MiniMapActivity extends MapActivity {
 		listOfOverlays.clear();
 
 		listOfOverlays = addPlayers(listOfOverlays);
-		listOfOverlays = addFlares(listOfOverlays);
 
 		listOfOverlays = reportPlayer(listOfOverlays);
 		if (flare) {
 			listOfOverlays = reportFlare(listOfOverlays);
 		}
+		listOfOverlays = addFlares(listOfOverlays);
 
 		mapView.invalidate(); // Calls onDraw()
 	}
@@ -421,7 +440,7 @@ public class MiniMapActivity extends MapActivity {
 			drawAllOverlays(false);
 		}
 		catch (NullPointerException e) {
-			printErrorAndExit("updateUserLocation caught NullPointerExcepiton");
+			System.out.println("updateUserLocation caught NullPointerExcepiton");
 		}
 	}
 
@@ -431,7 +450,7 @@ public class MiniMapActivity extends MapActivity {
 		}
 
 		// Define a listener that responds to location updates
-		LocationListener locationListener = new LocationListener() {
+		locationListener = new LocationListener() {
 			public void onLocationChanged(Location location) {
 				updateUserLocation(location);
 			}
@@ -465,21 +484,12 @@ public class MiniMapActivity extends MapActivity {
 	}
 
 	public boolean isRealPhone() {
-		return true; // TODO: change this to true, eventually remove isRealPhone()
-		// This is a shoddy hack of a way to tell whether or not this is running on an
-		//		emulator or not, but Android has no official way to do it. For production
-		// 		code, remove/comment out all the TelephonyManager stuff, the if statement,
-		// 		and the READ_PHONE_STATE permission in the Manifest
-		//		TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-		//		if (Long.parseLong(tm.getDeviceId()) != 0) {
-		//			return true;
-		//		}
-		//		return false;
+		return PHONE;
 	}
 
 	public void printErrorAndExit(String s) {
 		System.out.println(s);
-		Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), GENERAL_ERROR, Toast.LENGTH_LONG).show();
 		this.finish(); // Why u no work?
 		System.out.println("shouldnt get here");
 	}

@@ -6,3 +6,67 @@ Kevin Raber
 Chris Loew
 Rory Olsen
 
+Fall 2011
+
+
+CGI Scripts:
+  Currently, this app uses .cgi scripts on the inside.mines.edu server
+to synch data on players and flares. The app communicates with
+inside.mines.edu/~cloew and inside.mines.edu/~rolsen. The public_html
+directory contains the cgi-bin containing the .cgi scripts.
+
+
+
+Android limitations:
+
+Emulator's Lack Of GPS
+  Android currently does not provide a function to determine whether
+or not the device running the application is an emulator or a real
+Android-powered device. This is a problem for the GPS functionality,
+because the emulator does not have an easy way to mimic GPS functions.
+Because of this, we chose to hard-code whether the current compilation
+is for an emulator or a real Android-powered device. The first few
+lines of MiniMapActivity class in the package csci422.final_project
+determine which compilation you want. Alternatively, you could apparently
+enable your emulator to use a fake GPS function. (We were unable to get
+this to work.)
+
+Eclipse Exports
+  When running the application from Eclipse's Run function, the
+application will not be signed. Because of this, map tiles will not
+load. If you want the map tiles to load, you need to load the signed
+application on the device. To do so, follow these instructions:
+
+Instructions for making Google maps work on your emulator:
+
+1. Start the emulator
+
+2. Make sure HvZ is uninstalled. On the emulator,
+    go to Settings > Applications > Manage applications > HvZ,
+    and hit Uninstall
+
+3. At the top of the MiniMapActivity class in the package
+  csci422.final_project, make sure that the line
+	  private static final boolean PHONE = true;
+	is commented out and the line
+	  private static final boolean PHONE = false;
+	is uncommented.
+
+(Alternatively, you could apparently enable your emulator to use a
+fake GPS function. (We were unable to get this to work.)
+
+4. Export the HvZ_Activity.apk using Eclipse export wizard. (To start
+    it, go File > Export.) Export the hvz.keystore (the password
+    is pandaroll)
+
+With the terminal:
+5. cd to path/to/android-sdk-macosx/platform-tools
+
+6. do a $ adb devices
+    (to verify you have an emulator running)
+
+7. do a $ adb install /path/to/HvZ_Activity.apk
+    (This will be the path you supply at the last step of the Eclipse
+    export wizard.)
+
+Google maps should now work with the mini map on the emulator.

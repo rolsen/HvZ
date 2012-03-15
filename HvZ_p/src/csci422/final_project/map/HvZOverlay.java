@@ -15,6 +15,9 @@ public class HvZOverlay extends Overlay {
 	protected Resources resources;
 	protected int id;
 
+	// The overlay icons are 72x72 (I think) so subtracting half should center them
+	private final static int HALF = 36;
+
 	public HvZOverlay(GeoPoint gp, Resources r) {
 		point = gp;
 		resources = r;
@@ -36,7 +39,7 @@ public class HvZOverlay extends Overlay {
 
 		// Add the flare
 		Bitmap bmp = BitmapFactory.decodeResource(resources, id);
-		canvas.drawBitmap(bmp, screenPts.x, screenPts.y, null);
+		canvas.drawBitmap(bmp, screenPts.x-HALF, screenPts.y-HALF, null);
 		return true;
 	}
 }
