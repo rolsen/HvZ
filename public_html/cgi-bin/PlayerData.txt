@@ -1,9 +1,9 @@
-Abe Kline|Abe K.|Z|00.08.05.12.338|0|11111|akline@mymail.mines.edu|0
-Noah Towe|Bradford 210|Z|00.08.05.12.338|0|55555|ntowe@mymail.mines.edu|0
+Abe Kline|Abe K.|Z|00.08.08.12.343|0|11111|akline@mymail.mines.edu|0
+Noah Towe|Bradford 210|Z|00.08.08.12.343|0|55555|ntowe@mymail.mines.edu|0
 Chris Loew|Chrispy Chris|H|N/A|0|10001|cloew@mines.edu|0
 Kevin R|I'm dead|D|00.08.01.12.334|2|12341|kraber@mymail.mines.edu|2
-Colton Kohnke|Colton K.|Z|00.08.05.12.338|0|33333|ckohnke@mymail.mines.edu|0
-Ethan Morton-Gaught|Ethan Hunt|Z|00.08.05.12.338|0|44444|emortong@mymail.mines.edu|0
+Colton Kohnke|Colton K.|Z|00.08.08.12.343|0|33333|ckohnke@mymail.mines.edu|0
+Ethan Morton-Gaught|Ethan Hunt|Z|00.08.08.12.343|0|44444|emortong@mymail.mines.edu|0
 Kevin Ra|I'm also Dead|D|00.08.05.12.334|4|17535|kraber@mymail.mines.edu|1
 Rory Olsen|Gory Rory|H|N/A|0|1002|rolsen@mines.edu|0
 Kevin Raber1|Human1|H|N/A|0|10003|kraber@mymail.mines.edu|0
@@ -19,4 +19,4 @@ Kevin Raber10|Human10|H|N/A|0|10012|kraber@mymail.mines.edu|0
 Kevin Raber11|Human11|H|N/A|0|10013|kraber@mymail.mines.edu|0
 Kevin Raber12|Human12|H|N/A|0|10014|kraber@mymail.mines.edu|0
 Kevin Raber|Shotty|H|N/A|0|10015|kraber@mymail.mines.edu|0
-Kevin Day|RaveUp|Z|00.08.05.12.338|0|22222|kday@mymail.mines.edu|0
+Kevin Day|RaveUp|Z|00.08.08.12.343|0|22222|kday@mymail.mines.edu|0
